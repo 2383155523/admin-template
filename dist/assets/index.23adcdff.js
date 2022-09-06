@@ -1,0 +1,1 @@
+import{_ as e}from"./index.af7f5704.js";import{d as _,f as o,a}from"./vendor.22b2ea5d.js";const t={class:"index"},s=_({setup(n){return console.log("Page2\u52A0\u8F7D\u3002\u3002\u3002"),(r,c)=>(a(),o("div",t,"Page22"))}});var u=e(s,[["__scopeId","data-v-67fe47fa"]]);export{u as default};

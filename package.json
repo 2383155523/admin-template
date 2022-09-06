@@ -1,0 +1,43 @@
+{
+  "name": "admin-template",
+  "version": "1.0.0",
+  "author": "微若蜉蝣",
+  "description": "一个基于Vue3的后台管理系统模板",
+  "scripts": {
+    "dev": "vite --open",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
+  },
+  "dependencies": {
+    "aplayer": "^1.10.1",
+    "axios": "^0.21.4",
+    "nprogress": "^0.2.0",
+    "vue": "^3.2.25",
+    "vue-router": "^4.0.11",
+    "vuedraggable": "^4.1.0",
+    "vuex": "^4.0.2",
+    "xiao-you-bus": "^1.0.2"
+  },
+  "devDependencies": {
+    "@types/node": "^16.10.2",
+    "@vitejs/plugin-vue": "^2.0.0",
+    "naive-ui": "^2.26.2",
+    "sass": "^1.42.1",
+    "typescript": "^4.5.4",
+    "vite": "^2.8.0",
+    "vitest": "^0.20.3",
+    "vue-tsc": "^0.29.8",
+    "prettier": "^2.5.1",
+    "eslint-plugin-vue": "^9.0.0",
+    "eslint": "^8.5.0",
+    "@vue/tsconfig": "^0.1.3",
+    "@vue/eslint-config-prettier": "^7.0.0",
+    "@vue/eslint-config-typescript": "^11.0.0",
+    "@rushstack/eslint-patch": "^1.1.0"
+  },
+  "engines": {
+    "node": "^12 || >=14"
+  }
+}

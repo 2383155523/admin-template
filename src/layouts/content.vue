@@ -1,0 +1,83 @@
+<template>
+  <router-view v-slot="{ Component }" v-if="routeIsAlive">
+    <transition :name="store.state.admin.pageAnimateMode">
+      <keep-alive>
+        <component :is="Component" :key="route.fullPath" mode="out-in" />
+      </keep-alive>
+    </transition>
+  </router-view>
+</template>
+<script lang="ts" setup>
+import { useRoute } from "vue-router"
+import { useStore } from "vuex"
+import { routeIsAlive } from "@/hooks/reload"
+const route = useRoute()
+const store = useStore()
+</script>
+
+<style lang="scss" scoped>
+//top-fade
+.top-fade-leave-active {
+  animation: fadeTopOut 0.8s ease-in-out;
+}
+
+@keyframes fadeTopIn {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  50% {
+    transform: translateY(0px);
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fadeTopOut {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(20px);
+    opacity: 0.5;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+//zoom-fade
+
+.zoom-fade-enter-active {
+  animation: fadeZoomIn 1.4s;
+}
+.zoom-fade-leave-active {
+  animation: fadeZoomOut 0.6s ease-in-out;
+}
+
+@keyframes fadeZoomIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.01, 0.01);
+  }
+  50% {
+    transform: scale(1);
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fadeZoomOut {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.02);
+  }
+  100% {
+    opacity: 0;
+  }
+}
+</style>

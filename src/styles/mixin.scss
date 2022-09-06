@@ -1,0 +1,22 @@
+@mixin center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@mixin text-wrap {
+  white-space: pre-line;
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
+@mixin gray {
+  filter: grayscale(100%);
+  -webkit-filter: grayscale(100%);
+  -moz-filter: grayscale(100%);
+  -ms-filter: grayscale(100%);
+  -o-filter: grayscale(100%);
+}
+
+.grayDay {
+  @include gray;
+}

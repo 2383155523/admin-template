@@ -1,0 +1,65 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+@font-face {
+  font-family: "HarmonyOS_Sans_SC_Medium";
+  src: url("../static/font/OPPO-OS.woff2");
+}
+
+body {
+  cursor: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAZCAMAAAAL146mAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAASNQTFRFAAAAAAAAAAAAAAAAAAAAGSQmGCUnDRoaAAAAGCUon6SlFyQmDhsbAAAAAAAAFyQnlJqcFyMlDw8PAAAAFyMmi5GSFiInERERAAAAFyMm+/v7gYiJFyQmABUV+vr6d36AFiMl+Pn5b3d5FyMlAAAA9vf3ZW5wFiIkAAAA9fX1XGVnFyIkAAAA8vPzVV5gFiEkAAAA8PDwTlhaFSEk7O3tRlFTFyEl1NfXGCQm6OnpQUtNEx0gAAAAQEpMERodAAAAP0lLERkcAAAAAAAAFyMmAAAAAAAAFiEjFiIlFiIln6SlFyMmAAAAAAAAAAAAAAAABQoKFSEjAAAAAAAABgwMFSEjoKSm09XWFyImBg0NFCAiFiEjERkZAAAA/Pz8+/v7////3+LoFQAAAF50Uk5TAAECAwVydxQKoc6FEwQOpMyCERCmyX4PEaf+xXkM/sJ0/b5uCfy7aQj7uGMH+rVcBviyVvawTeqU9bJPC7VZFLZaGA2pHA99q6zWqBUeISMxlBITK5LV6pspf4o9F3yyPVgAAAABYktHRGDFt3wQAAAACW9GRnMAAAAAAAAAAgDoHNRMAAAACXBIWXMAAADIAAAAyABj+uetAAAACXZwQWcAAAAgAAAAIACH+pydAAAA8klEQVQY013R6VbCMBAF4E4SJYoBtILFDdCKVREr4IKirCIq4oI7Mr7/W1hoqInz8zs5Se5cwzCAUAKGOsCmpkNUNaB8ZjY8pxqISBRj8wuKATMX8SeeWPozYFYScXlldS0wn3A9leYTk4SZjU1b/mVCuJXddnwLCHd293JEJ9zPH7hEJzwsFEemEpaOjhnohCenNtGpfHZeoRqVLy6r/07V6o3m+C4vtpzWVXv8oohctzqdm1uP7roO9VfYve89PD55lnx2ZSLetvqNl9e39w+TyeBUMLfS//wafDdFsDMAYZvDoeUQrRWX85xW1KhNWecvqKk8tzJNk4wAAAAldEVYdGRhdGU6Y3JlYXRlADIwMTgtMTItMTZUMDM6NTY6MzYrMDA6MDAqAmTNAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDE4LTEyLTE2VDAzOjU2OjM1KzAwOjAwarfG7AAAAABJRU5ErkJggg==),
+    auto !important;
+  font-family: "HarmonyOS_Sans_SC_Medium";
+}
+a,
+i,
+.my-button {
+  cursor: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAAbCAMAAAC+/9RaAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAbZQTFRFAAAAAAAAAAAAAAAAFiIiEhskGCQnP0pNAAAAFyIkpamqAAAAFyQm5ufnAAAAAAAAFyQnAAAAAAAAFyMmFyMmAAAAAAAAFyMmFiMlFiAjAAAAm6Ch19nZanJ0FyQmGCMnGCQn5OXlo6ip5ufnfoWGFyQmFyQoGCQmFBQUGSElFyQkFSImERoaAAAA5ebnrLCy8/P0kJaXFiMlFyMlYmttqa6vi5GTKDQ3FBoe6+vsFyMlAAAAFSAgLzo9+Pj44+XlTVZZFiIl9fX1FiMmAAAADAwMFSEjgYiJ9vf3g4mLFyMkAAAAAAAAAAkJFSAijJKT09XWFSEkAAAABwcHFSAjtLi5v8PDFSAiDhMTKjQ36uvrq6+wFCAiAAAAEh0fbnV3lpydFBwfAAAAFSIkuby9fYSGERsfChQUJzI15ebmZGxuERoaAAAAEhseV2Bi+fn5SFFUDBgYAAAAEx4gZ25w5ufnJzI1CQkJAAAAEhwfFiAjKTQ2JzI1JTAzIi0wISwvHiotGycqGSUoFyMmFiMlAAAAAAAAAAcHAAcHAAAAAAAAAAAAAAAAAAAAAAAA/Pz8+/v7////0oTyBwAAAI90Uk5TAAECAxccd6oGYtILj/MEDqUFEKanEhGofU8I0uu8holW8tTywo2Nag0+TTwdFPPY+shnbrfTxqBN9ZAKMKj98req+58NFXrI/MuTDwwdhs7qhQcjkd7hdzar9tlpFWLE0FobkN/HSzSo8747CVa9/bUrGHbB9KsbGmOXsK+vrq6trKyqnxYdJCUlJCMiHhf4pz4qAAAAAWJLR0SRDw2+mgAAAAlvRkZzAAAABQAAAAEAk/wWPAAAAAlwSFlzAAAAyAAAAMgAY/rnrQAAAAl2cEFnAAAAIAAAACAAh/qcnQAAAWFJREFUKM9t0vVbwkAYB3DuTnTUjU1CZ3diNyoGJrOwuxu7uwvj/JPdHIwN+P625/Pc7n2+72k0cgAAmmgBEMUgGMUA0sbGxWpRJAFKpyd6HRUpyGA0EZPRgCKOYNpMCDHTOPwQYNh4QSxWKnwIwNgsgtgTEjmMVNMHJCk5JTUtnWOCCCBElFUUQjIys7JzcvPy/38KcUFhUbFDEiElpWXlFeL4kKqsqq6prbOTUOobnEiYt7GpmRBXS6tC2trdWLi7o7Prl5DuHoW4ej2CYL6vf4CoMzgkiAZ62eGRUbWMjdNYbJmzTkxOqWR6RrhHJOfs3LxKFhZ5JBXgXlpeUcrqmlMqHVLs+samQra2fTBQj8+xs7sXkv0DDgbXwx8eHZ/IcnrmDfYNGfr84vLq+ub27v7h8enZJq8dQIp+eX17//D7/Z9f3z+8YreQcbpZmxSPgYKqd4WZQDCCYSuXI379AQ00jFgn0DRAAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDE4LTEyLTE2VDAzOjU2OjM1KzAwOjAwG+p+UAAAACV0RVh0ZGF0ZTptb2RpZnkAMjAxOC0xMi0xNlQwMzo1NjozNSswMDowMGq3xuwAAAAASUVORK5CYII=),
+    auto !important;
+}
+
+* ::selection {
+  color: #fff;
+  background-color: var(--themeColor);
+}
+
+* ::-moz-selection {
+  color: #fff;
+  background-color: var(--themeColor);
+}
+
+*::-webkit-selection {
+  color: #fff;
+  background-color: var(--themeColor);
+}
+
+*::-webkit-scrollbar,
+*::-webkit-scrollbar-track-piece {
+  background-color: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background-color: var(--themeColor);
+  background-image: -webkit-linear-gradient(
+    45deg,
+    hsla(0, 0%, 100%, 0.6) 25%,
+    transparent 0,
+    transparent 50%,
+    hsla(0, 0%, 100%, 0.6) 0,
+    hsla(0, 0%, 100%, 0.6) 75%,
+    transparent 0,
+    transparent
+  );
+}
+
+*::-webkit-scrollbar {
+  width: 7px;
+  height: 6px;
+}
