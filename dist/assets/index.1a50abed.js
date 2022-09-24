@@ -1,1 +1,0 @@
-import{_ as e}from"./index.43c0796e.js";import{d as _,f as o,a as t}from"./vendor.22b2ea5d.js";const a={class:"index"},s=_({setup(n){return console.log("\u9996\u9875\u52A0\u8F7D\u3002\u3002\u3002"),(u,r)=>(t(),o("div",a,"\u9996\u9875"))}});var p=e(s,[["__scopeId","data-v-57a47ead"]]);export{p as default};

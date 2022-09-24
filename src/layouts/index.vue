@@ -153,6 +153,7 @@ onMounted(() => {
   .rightContainer {
     flex: 1;
     height: 92vh;
+    width: 0;
     .routerNav {
       max-width: 98%;
       width: 98%;

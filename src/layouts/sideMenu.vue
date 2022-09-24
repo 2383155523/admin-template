@@ -62,6 +62,7 @@ watch(collapsed, newVal => {
   transition: background-color 0.3s var(--n-bezier);
   position: relative;
   background: var(--BlockBgColor);
+  overflow-y: scroll;
 }
 .collapsed-btn {
   transition: all 0.3s var(--n-bezier);

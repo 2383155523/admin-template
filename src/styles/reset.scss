@@ -63,3 +63,7 @@ i,
   width: 7px;
   height: 6px;
 }
+
+*::-webkit-scrollbar-corner {
+  background: transparent;
+}
