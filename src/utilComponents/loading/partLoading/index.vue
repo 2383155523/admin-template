@@ -91,7 +91,7 @@ const { isShow, text, auto } = toRefs(props)
   top: 0;
   left: 0;
   z-index: 98;
-  border-radius: 4px;
+  border-radius: var(--radius);
   transition: all 0.3s var(--n-bezier);
   .loading-box {
     width: 100%;

@@ -200,7 +200,7 @@ const closeAll = () => {
     height: 100%;
     line-height: 5vh;
     max-height: 5vh;
-    border-radius: 4px;
+    border-radius: var(--radius);
     box-sizing: border-box;
     position: relative;
     overflow-x: auto;

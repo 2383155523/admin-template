@@ -11,9 +11,7 @@ console.log("首页加载。。。")
 
 <style lang="scss" scoped>
 .index {
-  width: 100%;
-  height: 100%;
-  border-radius: 4px;
+  border-radius: var(--radius);
   background: var(--BlockBgColor);
   box-sizing: border-box;
   padding-top: 10px;

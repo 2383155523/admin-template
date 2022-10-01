@@ -2,7 +2,7 @@
   <router-view v-slot="{ Component }" v-if="routeIsAlive">
     <transition :name="store.state.admin.pageAnimateMode">
       <keep-alive>
-        <component :is="Component" :key="route.fullPath" mode="out-in" />
+        <component :is="Component" :key="route.fullPath" mode="out-in" class="route-container" />
       </keep-alive>
     </transition>
   </router-view>
@@ -16,6 +16,11 @@ const store = useStore()
 </script>
 
 <style lang="scss" scoped>
+.route-container {
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: var(--radius);
+}
 //top-fade
 .top-fade-leave-active {
   animation: fadeTopOut 0.8s ease-in-out;

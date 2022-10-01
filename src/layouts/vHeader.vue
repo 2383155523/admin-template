@@ -143,7 +143,7 @@ const changeTheme = (val: string) => {
     img {
       width: 60px;
       height: 60px;
-      border-radius: 4px;
+      border-radius: var(--radius);
       cursor: var(--cursor-B);
       box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 5px 0px 10px;
     }
