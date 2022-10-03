@@ -14,6 +14,7 @@ const constantRoutes: Array<RouteRecordRaw> = [
       title: "登录",
     },
   },
+
   {
     path: "/:pathMatch(.*)*",
     redirect: "/dashboard",

@@ -21,6 +21,9 @@ const router = createRouter({
   routes: [...constantRoutes, ...menuRoutes] as Array<RouteRecordRaw>,
 })
 
+//本地缓存路由栈黑名单
+const routerStackBlackList: Array<string> = ["404", "redirect"]
+
 //路由前置守卫
 router.beforeEach((to, from, next) => {
   const loginState = getStorage("isLogin") == "true" //获取本地缓存的登录状态
@@ -31,7 +34,7 @@ router.beforeEach((to, from, next) => {
       next("/dashboard")
       document.title = "主控台"
     } else {
-      if (to.name != "404" && to.name != "reload") {
+      if (routerStackBlackList.every(name => to.name != name)) {
         //404不置入路由栈中 但放行进入404页面
         store.commit("admin/pushRouterStack", {
           canItBeClosed: true,

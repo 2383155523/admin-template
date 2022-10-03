@@ -143,6 +143,16 @@ const refreshCurrent = () => {
   //   params: { originUrl: unref(route).fullPath },
   // });
   reload(loadingBar)
+  // const { fullPath, query } = unref(route)
+  // console.log("fullPath=", fullPath)
+  // console.log("query=", query)
+  // router.replace({
+  //   path: "/redirect",
+  //   params: {
+  //     redirectUrl: fullPath,
+  //   },
+  //   query: query,
+  // })
 }
 
 const closeCurrent = () => {

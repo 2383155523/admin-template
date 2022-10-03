@@ -36,15 +36,29 @@ const instance: AxiosInstance = axios.create({
 //   }
 // )
 
+export type request_result = {
+  res: unknown
+  err: unknown
+  isSuccess: boolean
+  isError: boolean
+}
 async function req(requestConfig: AxiosRequestConfig) {
-  let result: unknown
+  const result: request_result = {
+    res: null,
+    err: null,
+    isSuccess: false,
+    isError: false,
+  }
+
   await instance
     .request(requestConfig)
     .then(data => {
-      result = data.data
+      result.res = data.data
+      result.isSuccess = true
     })
     .catch(err => {
-      result = err
+      result.err = err
+      result.isError = true
     })
   return result
 }
