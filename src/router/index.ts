@@ -1,5 +1,5 @@
-import constantRoutes from "./constant"
-import menuRoutes from "./meun"
+import useConstantRoutes from "./constant"
+import useMenuRoutes from "./meun"
 import nprogress from "nprogress"
 import "nprogress/nprogress.css"
 import { store } from "@/store"
@@ -16,13 +16,17 @@ nprogress.configure({
   showSpinner: false,
 })
 
+//如有其他路由文件 可由此导入解构合并
+//if has other route file you can import merge here.
+const routes = [...useConstantRoutes(), ...useMenuRoutes()] as Array<RouteRecordRaw>
+console.log("routes=", routes)
 const router = createRouter({
   history: createWebHashHistory(),
-  routes: [...constantRoutes, ...menuRoutes] as Array<RouteRecordRaw>,
+  routes,
 })
 
-//本地缓存路由栈黑名单
-const routerStackBlackList: Array<string> = ["404", "redirect"]
+//本地缓存路由栈黑名单 "redirect"
+const routerStackBlackList: Array<string> = ["404"]
 
 //路由前置守卫
 router.beforeEach((to, from, next) => {

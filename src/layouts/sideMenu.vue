@@ -11,6 +11,7 @@ import { isPC } from "@/hooks/resize"
 const route = useRoute()
 const store = useStore()
 const menuOptions = useMenuOptions()
+
 const collapsed = ref<boolean>(!isPC.value)
 watch(isPC, newVal => {
   collapsed.value = !newVal

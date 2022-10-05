@@ -3,7 +3,7 @@
     <div class="header"></div>
     <div class="content">
       <input type="text" v-model="content" />
-      <button @click="goRedirect">点我</button>
+      <h1>test2</h1>
     </div>
     <div class="footer"></div>
   </div>
@@ -11,13 +11,8 @@
 
 <script setup lang="ts">
 import { ref } from "vue"
-import { useRouter } from "vue-router"
 
 const content = ref<string>("")
-const router = useRouter()
-function goRedirect() {
-  router.push("/test2/index")
-}
 </script>
 
 <style lang="scss" scoped>

@@ -1,4 +1,4 @@
-import menuRoutes from "@/router/meun"
+import useMenuRoutes from "@/router/meun"
 import { RouterLink } from "vue-router"
 import { h } from "vue"
 import type { route } from "@type/route"
@@ -10,7 +10,7 @@ function createMenuOptions(menuRoutes: Array<route>): Array<MenuOption> {
   function createChildren(route: route): MenuOption {
     function createMenuItem(route: route): MenuOption {
       let menuItem: MenuOption = {}
-      if (route.meta.onlyOne) {
+      if (route.onlyOne) {
         const child = route.children[0]
         menuItem = {
           label: () =>
@@ -56,7 +56,7 @@ function createMenuOptions(menuRoutes: Array<route>): Array<MenuOption> {
     }
     const menuItem: MenuOption = createMenuItem(route)
 
-    if (route.children && route.children.length && !route.meta.onlyOne) {
+    if (route.children && route.children.length && !route.onlyOne) {
       menuItem.children = []
       route.children.forEach((route: route) => {
         menuItem.children.push(createChildren(route))
@@ -66,11 +66,11 @@ function createMenuOptions(menuRoutes: Array<route>): Array<MenuOption> {
     return menuItem
   }
   menuRoutes.forEach((route: route) => {
-    MenuOptions.push(createChildren(route))
+    !route.isNoMenuRoute && MenuOptions.push(createChildren(route))
   })
   return MenuOptions
 }
 
 export default function useMenuOptions(): Array<MenuOption> {
-  return createMenuOptions(menuRoutes)
+  return createMenuOptions(useMenuRoutes())
 }

@@ -21,12 +21,12 @@ console.log("currentRoute=", currentRoute)
 const _path = Array.isArray(path) ? path.join("/") : path
 console.log("_path=", _path)
 
-replace({
-  path: "/" + _path,
-  query,
-})
+// replace({
+//   path: "/" + _path,
+//   query,
+// })
 </script>
 
 <template>
-  <div>redirect</div>
+  <h1>redirect</h1>
 </template>
