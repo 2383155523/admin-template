@@ -2,7 +2,7 @@ import req from "@/http"
 
 //请求示例
 export const addArticle = async (data: { name: string; age: number }) => {
-  const res = await req({
+  const { res, err, isError, isSuccess } = await req({
     method: "post",
     url: "/addArticle",
     data,
@@ -11,9 +11,10 @@ export const addArticle = async (data: { name: string; age: number }) => {
 }
 
 export const getArticle = async () => {
-  const res = await req({
+  const { res, err, isError, isSuccess } = await req({
     method: "get",
     url: "/getArticle",
+    params: {},
   })
   return res
 }

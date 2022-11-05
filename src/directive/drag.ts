@@ -1,73 +1,101 @@
+import type { DirectiveBinding } from "vue"
+
+/***
+ * @Name v-drag
+ *
+ * @Use
+ *
+ * @template <div v-drag="true"> <button id="trigge">move</button> </div>
+ *
+ * @triggeId id为 trigge的DOM元素视为移动触发器
+ *
+ *  @true 开启边界模式 Start OutOfBound Mode
+ *
+ *  @false 关闭边界模式 Close OutOfBound Mode
+ *
+ *  @default false
+ */
+
 export default {
-  created(el: HTMLElement, binding, vNode) {
-    // if (el.querySelector(".n-modal")) {
-    const dialogHeaderEl: HTMLDivElement = el.querySelector(".n-card-header")
-    const dragDom = el
+  created(el: HTMLElement, binding: DirectiveBinding) {
+    if (typeof binding.value !== "boolean") {
+      console.error(`v-drag value type must equal Boolean`)
+      return
+    }
+    const enableLog = false
+    const isOutOfBound = binding.value === true //是否允许越界
+    const trigge: HTMLDivElement = el.querySelector("#trigge")
+    if (!trigge) {
+      console.error(
+        `v-drag Dom must has trigge element and element should has id the value is trigge`
+      )
+      return
+    }
+    trigge.style.cssText = `cursor: move;`
+    trigge.addEventListener("mousedown", () => {
+      document.onmousemove = function (e: MouseEvent) {
+        let left = e.pageX
+        let top = e.pageY
+        const dragDomOffsetParent = el.offsetParent
+        if (isOutOfBound && dragDomOffsetParent) {
+          if (
+            left >=
+            dragDomOffsetParent.clientWidth -
+              (el.offsetWidth - trigge.offsetLeft - trigge.offsetWidth / 2)
+          ) {
+            //右边越界
+            left =
+              dragDomOffsetParent.clientWidth -
+              el.offsetWidth +
+              trigge.offsetWidth / 2 -
+              parseFloat(window.getComputedStyle(el).paddingRight) -
+              parseFloat(window.getComputedStyle(el).paddingLeft)
+            enableLog && console.log("右边越界")
+          } else if (
+            left <=
+            trigge.offsetWidth / 2 +
+              parseFloat(window.getComputedStyle(el).paddingLeft) +
+              trigge.offsetLeft
+          ) {
+            //左边越界
+            left = 0
+            enableLog && console.log("左边越界")
+          } else {
+            enableLog && console.log("left正常")
+            left = left - trigge.offsetLeft - trigge.offsetWidth / 2
+          }
 
-    dialogHeaderEl.style.cssText += ";cursor:move;"
-    dragDom.style.cssText += ";top:0;"
-
-    const getStyle = (function () {
-      if ((window.document as any).currentStyle) {
-        return (dom, attr) => dom.currentStyle[attr]
-      } else {
-        return (dom, attr) => getComputedStyle(dom, null)[attr]
-      }
-    })()
-
-    dialogHeaderEl.onmousedown = e => {
-      const disX = e.clientX - dialogHeaderEl.offsetLeft
-      const disY = e.clientY - dialogHeaderEl.offsetTop
-
-      const dragDomWidth = dragDom.offsetWidth
-      const dragDomHeight = dragDom.offsetHeight
-
-      const screenWidth = document.body.clientWidth
-      const screenHeight = document.body.clientHeight
-
-      const minDragDomLeft = dragDom.offsetLeft
-      const maxDragDomLeft = screenWidth - dragDom.offsetLeft - dragDomWidth
-
-      const minDragDomTop = dragDom.offsetTop
-      const maxDragDomTop = screenHeight - dragDom.offsetTop - dragDomHeight
-
-      let styL = getStyle(dragDom, "left")
-      let styT = getStyle(dragDom, "top")
-
-      if (styL.includes("%")) {
-        styL = +document.body.clientWidth * (+styL / 100)
-        styT = +document.body.clientHeight * (+styT / 100)
-      } else {
-        styL = +styL.slice(0, -2)
-        styT = +styT.slice(0, -2)
-      }
-
-      document.onmousemove = function (e) {
-        let left = e.clientX - disX
-        let top = e.clientY - disY
-
-        if (-left > minDragDomLeft) {
-          left = -minDragDomLeft
-        } else if (left > maxDragDomLeft) {
-          left = maxDragDomLeft
+          if (
+            top >=
+            dragDomOffsetParent.clientHeight -
+              (el.offsetHeight - trigge.offsetTop - trigge.offsetHeight / 2)
+          ) {
+            //下面越界
+            top = dragDomOffsetParent.clientHeight - el.offsetHeight
+            enableLog && console.log("下面越界")
+          } else if (top <= trigge.offsetTop + trigge.offsetHeight / 2) {
+            //上面越界
+            top = 0
+            enableLog && console.log("上面越界")
+          } else {
+            enableLog && console.log("top正常")
+            top = top - trigge.offsetTop - trigge.offsetHeight / 2
+          }
+        } else {
+          left = left - trigge.offsetLeft - trigge.offsetWidth / 2
+          top = top - trigge.offsetTop - trigge.offsetHeight / 2
         }
-
-        if (-top > minDragDomTop) {
-          top = -minDragDomTop
-        } else if (top > maxDragDomTop) {
-          top = maxDragDomTop
-        }
-
-        dragDom.style.cssText += `;left:${left + styL}px;top:${top + styT}px;`
-
-        // vNode.child.$emit("drag-dialog")
+        el.style.cssText = `
+        position:absolute;
+        left:${left}px;
+        top:${top}px;
+        `
       }
 
       document.onmouseup = function () {
         document.onmousemove = null
         document.onmouseup = null
       }
-    }
+    })
   },
-  //   },
 }

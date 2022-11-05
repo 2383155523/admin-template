@@ -85,12 +85,12 @@ export const toStr = (data: any): string => {
 export const throttle = (fn: (...arg) => void, timeOut: number): ((...arg) => void) => {
   let flag = true
   return (...arg: Array<unknown>) => {
-    if (flag) {
-      fn(...arg)
-    }
+    if (!flag) return
+    fn(...arg)
     flag = false
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       flag = true
+      clearTimeout(timer)
     }, timeOut)
   }
 }
