@@ -46,9 +46,9 @@ console.log("Page2加载。。。")
     @include center;
     font-size: 20px;
     color: #fff;
-    position: absolute;
-    top: 50%;
-    left: 50%;
+    // position: absolute;
+    // top: 50%;
+    // left: 50%;
   }
 }
 

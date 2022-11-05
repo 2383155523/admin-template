@@ -31,7 +31,9 @@ export default {
       )
       return
     }
+
     trigge.style.cssText = `cursor: move;`
+
     trigge.addEventListener("mousedown", () => {
       document.onmousemove = function (e: MouseEvent) {
         let left = e.pageX
@@ -47,7 +49,7 @@ export default {
             left =
               dragDomOffsetParent.clientWidth -
               el.offsetWidth +
-              trigge.offsetWidth / 2 -
+              trigge.offsetWidth -
               parseFloat(window.getComputedStyle(el).paddingRight) -
               parseFloat(window.getComputedStyle(el).paddingLeft)
             enableLog && console.log("右边越界")
