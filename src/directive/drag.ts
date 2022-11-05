@@ -46,12 +46,7 @@ export default {
               (el.offsetWidth - trigge.offsetLeft - trigge.offsetWidth / 2)
           ) {
             //右边越界
-            left =
-              dragDomOffsetParent.clientWidth -
-              el.offsetWidth +
-              trigge.offsetWidth -
-              parseFloat(window.getComputedStyle(el).paddingRight) -
-              parseFloat(window.getComputedStyle(el).paddingLeft)
+            left = dragDomOffsetParent.clientWidth - el.offsetWidth
             enableLog && console.log("右边越界")
           } else if (
             left <=
