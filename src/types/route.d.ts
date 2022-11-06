@@ -13,6 +13,7 @@ export interface childRoute {
   fullPath?: string //路由路径全称
   children?: Array<childRoute> //子路由
   redirect?: string
+  disabled?: boolean //是否禁用菜单选项
 }
 
 export interface route extends childRoute {

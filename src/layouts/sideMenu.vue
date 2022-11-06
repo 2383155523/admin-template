@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import useMenuOptions from "@/config/meun"
+import { useNaiveMenuOptions } from "@/router/utils"
 import { NSpace, NLayout, NLayoutSider, NMenu } from "naive-ui"
 import { useStore } from "vuex"
 import { useRoute } from "vue-router"
@@ -10,7 +10,7 @@ import { isPC } from "@/hooks/resize"
 
 const route = useRoute()
 const store = useStore()
-const menuOptions = useMenuOptions()
+const menuOptions = useNaiveMenuOptions()
 
 const collapsed = ref<boolean>(!isPC.value)
 watch(isPC, newVal => {

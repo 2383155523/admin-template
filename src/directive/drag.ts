@@ -3,17 +3,21 @@ import type { DirectiveBinding } from "vue"
 /***
  * @Name v-drag
  *
+ * @Author 微若蜉蝣
+ *
  * @Use
  *
  * @template <div v-drag="true"> <button id="trigge">move</button> </div>
  *
  * @triggeId id为 trigge的DOM元素视为移动触发器
  *
- *  @true 开启边界模式 Start OutOfBound Mode
+ * @true 开启边界模式 Start OutOfBound Mode
  *
- *  @false 关闭边界模式 Close OutOfBound Mode
+ * @false 关闭边界模式 Close OutOfBound Mode
  *
- *  @default false
+ * @default false
+ *
+ * @FAQ 出现的大部分问题都源自OffsetParent的错乱
  */
 
 export default {
@@ -22,7 +26,7 @@ export default {
       console.error(`v-drag value type must equal Boolean`)
       return
     }
-    const enableLog = false
+    const enableLog = true // Log Mode 开启日志
     const isOutOfBound = binding.value === true //是否允许越界
     const trigge: HTMLDivElement = el.querySelector("#trigge")
     if (!trigge) {
@@ -35,10 +39,11 @@ export default {
     trigge.style.cssText = `cursor: move;`
 
     trigge.addEventListener("mousedown", () => {
+      const dragDomOffsetParent = el.offsetParent as HTMLElement
       document.onmousemove = function (e: MouseEvent) {
         let left = e.pageX
         let top = e.pageY
-        const dragDomOffsetParent = el.offsetParent
+
         if (isOutOfBound && dragDomOffsetParent) {
           if (
             left >=
