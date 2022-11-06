@@ -1,10 +1,10 @@
 import login from "@/layouts/login.vue"
-import type { route } from "@type/route"
+import type { RouteRecordRaw } from "vue-router"
 
 const Layout = () => import("@/layouts/index.vue")
 
 //常量路由
-const constantRoutes: Array<route> = [
+const constantRoutes: Array<RouteRecordRaw> = [
   {
     path: "/",
     redirect: "/dashboard",
@@ -27,7 +27,6 @@ const constantRoutes: Array<route> = [
       {
         path: "index",
         name: "test2-index",
-        fullPath: "/test2/index",
         component: () => import("@pages/test2/index.vue"),
         meta: {
           title: "测试2",

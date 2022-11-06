@@ -6,7 +6,6 @@ import { getStorage } from "../util/cache"
 import { createRouter, createWebHashHistory } from "vue-router"
 import { useVueRouterConfig } from "./utils"
 import "./utils"
-import type { RouteRecordRaw } from "vue-router"
 import type { App } from "vue"
 
 //nprogress 配置
@@ -19,8 +18,7 @@ nprogress.configure({
 
 //如有其他路由文件 可由此导入解构合并
 //if has other route file you can import merge here.
-const routes = [...constantRoutes, ...useVueRouterConfig()] as Array<RouteRecordRaw>
-console.log("routes=", routes)
+const routes = [...constantRoutes, ...useVueRouterConfig()]
 const router = createRouter({
   history: createWebHashHistory(),
   routes,
