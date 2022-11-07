@@ -246,7 +246,6 @@ $border-radius: 6px;
   width: 100vw;
   height: 100vh;
   // background-image: linear-gradient(135deg, #81fbb8 10%, #28c76f 100%);
-  // background: url("https://fuyouplus.oss-cn-beijing.aliyuncs.com/blog-imgs/23.jpg") no-repeat;
   background: url("@/static/image/bizhi.png") no-repeat;
   background-size: cover;
   position: relative;
