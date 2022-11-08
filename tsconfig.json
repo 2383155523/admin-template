@@ -13,6 +13,9 @@
       "esnext",
       "dom"
     ],
+    "types": [
+      "unplugin-vue-define-options"
+    ],
     "baseUrl": ".",
     "paths": {
       "@/*": [

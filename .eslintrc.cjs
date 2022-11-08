@@ -9,6 +9,7 @@ module.exports = {
     "@vue/eslint-config-typescript/recommended",
     "@vue/eslint-config-prettier",
   ],
+  globals: { defineOptions: "writable" },
   rules: {
     //配置 prettier 规则
     "prettier/prettier": ["error", { semi: false, printWidth: 100, arrowParens: "avoid" }], //不要使用分号

@@ -5,7 +5,6 @@ export const adminInfo: adminInfo_type = {
   id: 1,
   name: "微若蜉蝣",
   avatar_url: "https://q2.qlogo.cn/headimg_dl?spec=100&dst_uin=2383155523",
-  tag: "博主",
   blog_url: "https://fuyouplus.cn",
   qq: "2383155523",
   email: "2383155523@qq.com",
@@ -53,3 +52,6 @@ export const httpTimeOut = 5000
 
 //token前缀
 export const tokenPrefix = "Bearer "
+
+//是否开启小蝣温馨提示
+export const isShowTimeTip = false

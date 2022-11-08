@@ -3,6 +3,9 @@
     "composite": true,
     "module": "esnext",
     "moduleResolution": "node",
+    "types": [
+      "unplugin-vue-define-options"
+    ],
   },
   "include": [
     "vite.config.ts"

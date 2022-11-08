@@ -1,18 +1,20 @@
 <template>
-  <router-view v-slot="{ Component }" v-if="routeIsAlive">
+  <router-view #default="{ Component }" v-if="routeIsAlive">
     <transition :name="store.state.admin.pageAnimateMode">
-      <keep-alive>
-        <component :is="Component" :key="route.fullPath" mode="out-in" class="route-container" />
+      <keep-alive exclude="test">
+        <component :is="Component" :key="Route.fullPath" mode="out-in" class="route-container" />
       </keep-alive>
     </transition>
   </router-view>
 </template>
 <script lang="ts" setup>
-import { useRoute } from "vue-router"
+import { useRoute, useRouter } from "vue-router"
 import { useStore } from "vuex"
 import { routeIsAlive } from "@/hooks/reload"
-const route = useRoute()
+const Route = useRoute()
 const store = useStore()
+const Router = useRouter()
+console.log(Router.getRoutes())
 </script>
 
 <style lang="scss" scoped>

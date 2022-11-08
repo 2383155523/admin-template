@@ -1,6 +1,6 @@
 <template>
   <div class="index">
-    <div class="header"></div>
+    <div class="header">test</div>
     <div class="content">
       <input type="text" v-model="content" />
       <button @click="goRedirect">点我</button>
@@ -10,14 +10,21 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue"
+import { ref, onMounted } from "vue"
 import { useRouter } from "vue-router"
+
+defineOptions({
+  name: "test",
+})
 
 const content = ref<string>("")
 const router = useRouter()
 function goRedirect() {
   router.push("/test2/index")
 }
+onMounted(() => {
+  console.log("testMounted")
+})
 </script>
 
 <style lang="scss" scoped>

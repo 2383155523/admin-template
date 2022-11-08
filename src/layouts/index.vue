@@ -33,7 +33,7 @@ import { getStorage } from "@/util/cache"
 import { isPC } from "@/hooks/resize"
 import { routeIsAlive } from "@/hooks/reload"
 import { useNotification, NAvatar, NButton, useMessage } from "naive-ui"
-import { lightThemeSetupTime, darkThemeSetupTime, adminInfo } from "@/config/var"
+import { lightThemeSetupTime, darkThemeSetupTime, adminInfo, isShowTimeTip } from "@/config/var"
 
 const notification = useNotification()
 const message = useMessage()
@@ -125,7 +125,7 @@ onMounted(() => {
   initRouteStack()
   initAdminInfo()
   initTheme()
-  TimeTip()
+  isShowTimeTip && TimeTip()
 })
 </script>
 <style lang="scss" scoped>
