@@ -1,7 +1,7 @@
 <template>
   <router-view #default="{ Component }" v-if="routeIsAlive">
     <transition :name="store.state.admin.pageAnimateMode">
-      <keep-alive exclude="test">
+      <keep-alive>
         <component :is="Component" :key="Route.fullPath" mode="out-in" class="route-container" />
       </keep-alive>
     </transition>
@@ -14,7 +14,6 @@ import { routeIsAlive } from "@/hooks/reload"
 const Route = useRoute()
 const store = useStore()
 const Router = useRouter()
-console.log(Router.getRoutes())
 </script>
 
 <style lang="scss" scoped>

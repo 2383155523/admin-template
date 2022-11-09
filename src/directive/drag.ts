@@ -26,7 +26,7 @@ export default {
       console.error(`v-drag value type must equal Boolean`)
       return
     }
-    const enableLog = true // Log Mode 开启日志
+    const enableLog = false // Log Mode 开启日志
     const isOutOfBound = binding.value === true //是否允许越界
     const trigge: HTMLDivElement = el.querySelector("#trigge")
     if (!trigge) {

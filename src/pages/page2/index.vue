@@ -2,7 +2,7 @@
   <div class="index">
     <n-button @click="showModal = true"> 来吧 </n-button>
     <n-modal v-model:show="showModal">
-      <div class="modal-content" v-drag="false">
+      <div class="modal-content" v-drag="true">
         <header id="trigge">Move</header>
       </div>
     </n-modal>
