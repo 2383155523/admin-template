@@ -14,7 +14,6 @@ import {
 } from "naive-ui"
 import { useStore } from "vuex"
 import { useRouter } from "vue-router"
-import { menuDefaultIsToRight, musicDefaulMode } from "@/config/var"
 import color from "@/config/color"
 import bus from "@/eventBus/admin"
 import type { CSSProperties } from "vue"
@@ -25,10 +24,7 @@ const message = useMessage()
 const dialog = useDialog()
 const theme = ref<string>("")
 const settingIsShow = ref<boolean>(false)
-const grayMode = ref<boolean>(false)
-const menuToRight = ref<boolean>(menuDefaultIsToRight)
-const musicMode = ref<boolean>(musicDefaulMode)
-const pageAnimateMode = ref<string>(store.state.admin.pageAnimateMode)
+const grayMode = ref<boolean>(store.state.admin.grayMode)
 const pageAnimateModeOptions = ref<Array<{ label: string; value: string }>>([
   {
     label: "zoom-fade",
@@ -39,7 +35,6 @@ const pageAnimateModeOptions = ref<Array<{ label: string; value: string }>>([
     value: "top-fade",
   },
 ])
-const html: HTMLHtmlElement = document.querySelector("html")
 
 const changeTheme = (val: string) => {
   store.commit("admin/setTheme", val)
@@ -73,34 +68,14 @@ const logout = () => {
 }
 
 watch(grayMode, (v: boolean) => {
+  const html: HTMLHtmlElement = document.querySelector("html")
   if (v) {
     html.classList.add("grayDay")
   } else {
     html.classList.remove("grayDay")
   }
+  store.commit("admin/setGrayMode", v)
 })
-
-watch(
-  pageAnimateMode,
-  (v: string) => {
-    store.commit("admin/setPageAnimateMode", v)
-  },
-  { immediate: true }
-)
-watch(
-  menuToRight,
-  (v: boolean) => {
-    store.commit("admin/setMenuToRight", v)
-  },
-  { immediate: true }
-)
-watch(
-  musicMode,
-  (v: boolean) => {
-    store.commit("admin/setMusicMode", v)
-  },
-  { immediate: true }
-)
 
 watch(theme, (v: string) => {
   changeTheme(v)
@@ -160,14 +135,14 @@ bus.on("theme", (v: string) => {
         </div>
         <n-divider title-placement="center">菜单居右</n-divider>
         <div class="content">
-          <n-switch v-model:value="menuToRight">
+          <n-switch v-model:value="store.state.admin.menuToRight">
             <template #checked>开启</template>
             <template #unchecked>关闭</template>
           </n-switch>
         </div>
         <n-divider title-placement="center">音乐模式</n-divider>
         <div class="content">
-          <n-switch v-model:value="musicMode">
+          <n-switch v-model:value="store.state.admin.musicMode">
             <template #checked>开启</template>
             <template #unchecked>关闭</template>
           </n-switch>
@@ -175,7 +150,10 @@ bus.on("theme", (v: string) => {
         <n-divider title-placement="center">页面切换动画设置</n-divider>
         <div class="content">
           <div class="select">
-            <n-select v-model:value="pageAnimateMode" :options="pageAnimateModeOptions" />
+            <n-select
+              v-model:value="store.state.admin.pageAnimateMode"
+              :options="pageAnimateModeOptions"
+            />
           </div>
         </div>
         <n-divider title-placement="center">退出登录</n-divider>

@@ -20,6 +20,7 @@ export interface adminState {
   menuToRight: boolean
   musicMode: boolean
   pageAnimateMode: PageAnimateMode
+  grayMode: boolean
 }
 
 export interface routerItem {
@@ -41,6 +42,7 @@ const state: adminState = {
   menuToRight: menuDefaultIsToRight, //是否菜单默认在右边
   musicMode: musicDefaulMode, //音乐播放模式
   pageAnimateMode: defaultPageAnimateMode, //页面动画模式
+  grayMode: false,
 }
 
 const getters = {
@@ -56,6 +58,10 @@ const getters = {
 }
 
 const mutations = {
+  setGrayMode(state: adminState, val: boolean) {
+    //设置页面灰度模式
+    state.grayMode = val
+  },
   setPageAnimateMode(state: adminState, val: PageAnimateMode) {
     //设置页面动画模式
     state.pageAnimateMode = val

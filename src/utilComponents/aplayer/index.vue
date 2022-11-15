@@ -42,7 +42,7 @@ onMounted(() => {
   createAplayer(WangYiYunMusicListId)
 })
 onUnmounted(() => {
-  aplayerInstance.destroy()
+  aplayerInstance && aplayerInstance.destroy()
 })
 </script>
 
