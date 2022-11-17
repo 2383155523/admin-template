@@ -30,7 +30,6 @@ const routerStackBlackList: Array<string> = ["404"]
 //路由前置守卫
 router.beforeEach((to, from, next) => {
   const token = getStorage("token") //获取本地缓存的Token
-  console.log("token=", token)
   document.title = to.meta.title
   nprogress.start()
   if (token) {

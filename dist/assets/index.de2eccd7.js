@@ -1,0 +1,1 @@
+import{_ as e}from"./index.f21e7ae1.js";import{b as _,h as c}from"./vendor.30226a4e.js";const t={},a={class:"index"};function r(n,o){return _(),c("div",a,"page3-child1_1")}var i=e(t,[["render",r],["__scopeId","data-v-6e9c748a"]]);export{i as default};

@@ -10,6 +10,8 @@ interface State {
   routeStack: Array<routerItem>
 }
 
+let index = 0
+
 export const useRouteStackStore = defineStore("RouteStack", {
   state: (): State => ({ routeStack: [] }),
   actions: {
@@ -23,7 +25,10 @@ export const useRouteStackStore = defineStore("RouteStack", {
       const isRepet = this.routeStack.some(item => item.title == val.title) //为真 就表示重复了,反之
       if (!isRepet) {
         this.routeStack.push(val)
-        setStorage("routeStack", JSON.stringify(this.routeStack))
+        if (index !== 0) {
+          setStorage("routeStack", JSON.stringify(this.routeStack))
+        }
+        index++
       }
     },
     filterRouterStack(index: number): void {

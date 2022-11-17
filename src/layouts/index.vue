@@ -52,9 +52,10 @@ const initAdminInfo = () => {
   AdminStore.setAdminInfo(adminInfo)
 }
 const initRouteStack = () => {
+  const RouteStacks = JSON.parse(getStorage("routeStack"))
   RouteStackStore.setRouterStack(
-    JSON.parse(getStorage("routeStack"))
-      ? JSON.parse(getStorage("routeStack"))
+    RouteStacks
+      ? RouteStacks
       : [
           {
             canItBeClosed: false,
