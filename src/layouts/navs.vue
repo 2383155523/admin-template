@@ -3,7 +3,7 @@
     <div
       class="routeNav"
       :style="{
-        'max-width': store.state.admin.isCollapsed ? '92vw' : '85vw',
+        'max-width': AdminSettingStore.isCollapsed ? '92vw' : '85vw',
       }"
     >
       <draggable
@@ -49,7 +49,8 @@
 
 <script lang="ts" setup>
 import { useRouter, useRoute } from "vue-router"
-import { useStore } from "vuex"
+import { useAdminSettingStore } from "@/stores/admin/setting"
+import { useRouteStackStore } from "@/stores/admin/routeStack"
 import { h, ref, computed } from "vue"
 import { IClose, IDropdown, IReload, ICloseAll } from "@icons/index"
 import { NDropdown, useMessage, useLoadingBar } from "naive-ui"
@@ -57,16 +58,17 @@ import { reload } from "@/hooks/reload"
 import draggable from "vuedraggable"
 const router = useRouter()
 const route = useRoute()
-const store = useStore()
+const AdminSettingStore = useAdminSettingStore()
+const RouteStackStore = useRouteStackStore()
 const message = useMessage()
 const loadingBar = useLoadingBar()
 const drag = ref(false)
 const routeStack = computed({
   get: () => {
-    return store.state.admin.routeStack
+    return RouteStackStore.routeStack
   },
   set: val => {
-    store.commit("admin/setRouterStack", val)
+    RouteStackStore.setRouterStack(val)
   },
 })
 const dragOptions = computed(() => {
@@ -112,19 +114,19 @@ const closeRouter = (index: number) => {
     message.warning("主控台无法关闭")
     return
   }
-  const originRouterPath: string = store.state.admin.routeStack[index].path
-  store.commit("admin/filterRouterStack", index)
+  const originRouterPath: string = RouteStackStore.routeStack[index].path
+  RouteStackStore.filterRouterStack(index)
   if (route.path == originRouterPath) {
     //只有当前路由相同时才做判断跳转
-    if (index == store.state.admin.routeStack.length) {
+    if (index == RouteStackStore.routeStack.length) {
       //最后一个路由
       router.push({
-        path: store.state.admin.routeStack[index - 1].path,
+        path: RouteStackStore.routeStack[index - 1].path,
       })
     } else {
       //不是最后一个路由
       router.push({
-        path: store.state.admin.routeStack[index].path,
+        path: RouteStackStore.routeStack[index].path,
       })
     }
   }
@@ -147,20 +149,15 @@ const refreshCurrent = () => {
 
 const closeCurrent = () => {
   //关闭当前
-  const index = store.state.admin.routeStack.findIndex(
-    (item: routerItem) => item.path == route.path
-  )
+  const index = RouteStackStore.routeStack.findIndex((item: routerItem) => item.path == route.path)
   closeRouter(index)
 }
 
 const closeOther = () => {
   //关闭其他
-  const index = store.state.admin.routeStack.findIndex(
-    (item: routerItem) => item.path == route.path
-  )
-  store.commit(
-    "admin/setRouterStack",
-    store.state.admin.routeStack.filter(
+  const index = RouteStackStore.routeStack.findIndex((item: routerItem) => item.path == route.path)
+  RouteStackStore.setRouterStack(
+    RouteStackStore.routeStack.filter(
       (item: routerItem, i: number) => index == i || item.title == "主控台"
     )
   )
@@ -168,9 +165,8 @@ const closeOther = () => {
 
 const closeAll = () => {
   //关闭所有
-  store.commit(
-    "admin/setRouterStack",
-    store.state.admin.routeStack.filter((item: routerItem) => item.title == "主控台")
+  RouteStackStore.setRouterStack(
+    RouteStackStore.routeStack.filter((item: routerItem) => item.title == "主控台")
   )
   router.push({ path: "/" })
 }

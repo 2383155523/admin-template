@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { useNaiveMenuOptions } from "@/router/utils"
 import { NSpace, NLayout, NLayoutSider, NMenu } from "naive-ui"
-import { useStore } from "vuex"
+import { useAdminSettingStore } from "@/stores/admin/setting"
 import { useRoute } from "vue-router"
 import { watch } from "vue"
 import { ref } from "vue"
@@ -9,7 +9,7 @@ import { IMenuFold, IMenuUnFold } from "@icons/index"
 import { isPC } from "@/hooks/resize"
 
 const route = useRoute()
-const store = useStore()
+const AdminSettingStore = useAdminSettingStore()
 const menuOptions = useNaiveMenuOptions()
 
 const collapsed = ref<boolean>(!isPC.value)
@@ -17,7 +17,7 @@ watch(isPC, newVal => {
   collapsed.value = !newVal
 })
 watch(collapsed, newVal => {
-  store.commit("admin/setIsCollapsed", newVal)
+  AdminSettingStore.setIsCollapsed(newVal)
 })
 </script>
 

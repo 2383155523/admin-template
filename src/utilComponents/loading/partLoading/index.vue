@@ -3,7 +3,7 @@
     <div
       class="loading"
       :class="{
-        [`${store.state.admin.theme}-loading`]: true,
+        [`${AdminSettingStore.theme}-loading`]: true,
         'loading-auto': auto,
       }"
       v-if="isShow"
@@ -11,7 +11,7 @@
       <div class="loading-box">
         <svg
           class="loading-icon"
-          :class="store.state.admin.theme + '-loading-icon'"
+          :class="AdminSettingStore.theme + '-loading-icon'"
           viewBox="0 0 200 200"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -56,7 +56,7 @@
             </circle>
           </g>
         </svg>
-        <p class="loading-text" :class="store.state.admin.theme + '-loading-text'">
+        <p class="loading-text" :class="AdminSettingStore.theme + '-loading-text'">
           {{ text }}
         </p>
       </div>
@@ -65,8 +65,8 @@
 </template>
 <script lang="ts" setup>
 import { defineProps, toRefs, withDefaults } from "vue"
-import { useStore } from "vuex"
-const store = useStore()
+import { useAdminSettingStore } from "@/stores/admin/setting"
+const AdminSettingStore = useAdminSettingStore()
 const props = withDefaults(
   defineProps<{
     isShow: boolean

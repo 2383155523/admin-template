@@ -12,15 +12,15 @@ import {
 } from "naive-ui"
 import { onMounted } from "vue"
 import fullScreenLoading from "@utilCop/loading/fullScreenLoading/index.vue"
-import { useStore } from "vuex"
+import { useAdminSettingStore } from "@/stores/admin/setting"
 import { getStorage } from "@/util/cache"
-const store = useStore()
+
+const AdminSettingStore = useAdminSettingStore()
 
 const initThemeColor = () => {
   const themeColor =
-    getStorage("themeColor") == null ? store.state.admin.themeColor : getStorage("themeColor")
-
-  store.commit("admin/setThemeColor", themeColor)
+    getStorage("themeColor") == null ? AdminSettingStore.themeColor : getStorage("themeColor")
+  AdminSettingStore.setThemeColor(themeColor)
 }
 onMounted(() => {
   initThemeColor()
@@ -31,13 +31,13 @@ onMounted(() => {
   <n-config-provider
     :locale="zhCN"
     :date-locale="dateZhCN"
-    :theme="store.state.admin.theme == 'light' ? lightTheme : darkTheme"
+    :theme="AdminSettingStore.theme == 'light' ? lightTheme : darkTheme"
     :theme-overrides="{
       common: {
-        primaryColor: store.state.admin.themeColor,
-        primaryColorHover: store.state.admin.themeColor,
-        primaryColorPressed: store.state.admin.themeColor,
-        primaryColorSuppl: store.state.admin.themeColor,
+        primaryColor: AdminSettingStore.themeColor,
+        primaryColorHover: AdminSettingStore.themeColor,
+        primaryColorPressed: AdminSettingStore.themeColor,
+        primaryColorSuppl: AdminSettingStore.themeColor,
       },
       Scrollbar: {
         color: `var(--themeColor)`,

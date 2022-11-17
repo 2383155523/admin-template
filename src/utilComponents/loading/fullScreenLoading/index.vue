@@ -4,7 +4,7 @@
       v-show="isShow"
       class="loadingBox"
       :style="{
-        background: store.state.admin.theme == 'light' ? 'var(--themeColor)' : '#333',
+        background: AdminSettingStore.theme == 'light' ? 'var(--themeColor)' : '#333',
       }"
     >
       <svg
@@ -21,7 +21,7 @@
       >
         <circle
           fill="none"
-          :stroke="store.state.admin.theme == 'light' ? '#fff' : 'var(--themeColor)'"
+          :stroke="AdminSettingStore.theme == 'light' ? '#fff' : 'var(--themeColor)'"
           stroke-width="6"
           stroke-miterlimit="15"
           stroke-dasharray="14.2472,14.2472"
@@ -41,7 +41,7 @@
         </circle>
         <circle
           fill="none"
-          :stroke="store.state.admin.theme == 'light' ? '#fff' : 'var(--themeColor)'"
+          :stroke="AdminSettingStore.theme == 'light' ? '#fff' : 'var(--themeColor)'"
           stroke-width="1"
           stroke-miterlimit="10"
           stroke-dasharray="10,10"
@@ -60,7 +60,7 @@
           ></animateTransform>
         </circle>
 
-        <g :fill="store.state.admin.theme == 'light' ? '#fff' : 'var(--themeColor)'">
+        <g :fill="AdminSettingStore.theme == 'light' ? '#fff' : 'var(--themeColor)'">
           <rect x="30" y="35" width="5" height="30">
             <animateTransform
               attributeName="transform"
@@ -118,8 +118,8 @@
 </template>
 <script lang="ts" setup>
 import { ref, onMounted } from "vue"
-import { useStore } from "vuex"
-const store = useStore()
+import { useAdminSettingStore } from "@/stores/admin/setting"
+const AdminSettingStore = useAdminSettingStore()
 const isShow = ref<boolean>(false)
 const show = (closeTiming = 0) => {
   isShow.value = true

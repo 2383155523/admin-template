@@ -1,7 +1,7 @@
 import constantRoutes from "./constant"
 import nprogress from "nprogress"
 import "nprogress/nprogress.css"
-import { store } from "@/store"
+import { useRouteStackStore } from "@/stores/admin/routeStack"
 import { getStorage } from "../util/cache"
 import { createRouter, createWebHashHistory } from "vue-router"
 import { useVueRouterConfig } from "./utils"
@@ -24,22 +24,24 @@ const router = createRouter({
   routes,
 })
 
-//本地缓存路由栈黑名单 "redirect"
+//本地缓存路由栈黑名单
 const routerStackBlackList: Array<string> = ["404"]
 
 //路由前置守卫
 router.beforeEach((to, from, next) => {
-  const loginState = getStorage("isLogin") == "true" //获取本地缓存的登录状态
+  const token = getStorage("token") //获取本地缓存的Token
+  console.log("token=", token)
   document.title = to.meta.title
   nprogress.start()
-  if (loginState) {
+  if (token) {
     if (to.name == "login" || to.name == "admin") {
       next("/dashboard")
       document.title = "主控台"
     } else {
       if (routerStackBlackList.every(name => to.name != name)) {
-        //404不置入路由栈中 但放行进入404页面
-        store.commit("admin/pushRouterStack", {
+        //将不在本地缓存路由栈黑名单中的路由存入
+        const RouteStackStore = useRouteStackStore()
+        RouteStackStore.pushRouterStack({
           canItBeClosed: true,
           title: to.meta.title,
           path: to.path,

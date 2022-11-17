@@ -4,7 +4,7 @@
     <div
       class="center"
       :style="{
-        'flex-direction': store.state.admin.menuToRight ? 'row-reverse' : 'row',
+        'flex-direction': AdminSettingStore.menuToRight ? 'row-reverse' : 'row',
       }"
     >
       <sideMenu />
@@ -17,7 +17,7 @@
       </div>
     </div>
     <!-- isPC && -->
-    <aplayer v-if="store.state.admin.musicMode" />
+    <aplayer v-if="AdminSettingStore.musicMode" />
   </div>
 </template>
 <script lang="ts" setup>
@@ -28,7 +28,9 @@ import routerContent from "@/layouts/content.vue"
 import partLoading from "@utilCop/loading/partLoading/index.vue"
 import aplayer from "@/utilComponents/aplayer/index.vue"
 import { onMounted, h } from "vue"
-import { useStore } from "vuex"
+import { useAdminStore } from "@/stores/admin/index"
+import { useRouteStackStore } from "@/stores/admin/routeStack"
+import { useAdminSettingStore } from "@/stores/admin/setting"
 import { getStorage } from "@/util/cache"
 import { isPC } from "@/hooks/resize"
 import { routeIsAlive } from "@/hooks/reload"
@@ -39,14 +41,18 @@ const notification = useNotification()
 const message = useMessage()
 window.$msg = message
 
-const store = useStore()
+const AdminStore = useAdminStore()
+const RouteStackStore = useRouteStackStore()
+const AdminSettingStore = useAdminSettingStore()
+
 const initAdminInfo = () => {
+  //初始化Token
+  AdminStore.token = getStorage("token")
   //初始化管理员信息
-  store.commit("admin/setAdminInfo", adminInfo)
+  AdminStore.setAdminInfo(adminInfo)
 }
 const initRouteStack = () => {
-  store.commit(
-    "admin/setRouterStack",
+  RouteStackStore.setRouterStack(
     JSON.parse(getStorage("routeStack"))
       ? JSON.parse(getStorage("routeStack"))
       : [
@@ -61,9 +67,9 @@ const initRouteStack = () => {
 const initTheme = () => {
   const hours = new Date().getHours()
   if (darkThemeSetupTime(hours)) {
-    store.commit("admin/setTheme", "dark")
+    AdminSettingStore.setTheme("dark")
   } else if (lightThemeSetupTime(hours)) {
-    store.commit("admin/setTheme", "light")
+    AdminSettingStore.setTheme("light")
   }
 }
 
@@ -95,7 +101,7 @@ const TimeTip = () => {
       h(NAvatar, {
         size: "small",
         round: false,
-        src: store.state.admin.adminInfo.avatar_url,
+        src: AdminStore.adminInfo.avatar_url,
       }),
     action: () =>
       h(

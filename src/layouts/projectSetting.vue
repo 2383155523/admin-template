@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import color from "@/config/color"
+import bus from "@/eventBus/admin"
 import { ref, watch, defineExpose } from "vue"
 import { ISun, IMoon } from "@icons/index"
 import {
@@ -12,19 +14,20 @@ import {
   useMessage,
   useDialog,
 } from "naive-ui"
-import { useStore } from "vuex"
+import { useAdminSettingStore } from "@/stores/admin/setting"
+import { useAdminStore } from "@/stores/admin/index"
 import { useRouter } from "vue-router"
-import color from "@/config/color"
-import bus from "@/eventBus/admin"
 import type { CSSProperties } from "vue"
+import type { Theme } from "@/config/var"
 
-const store = useStore()
+const AdminSettingStore = useAdminSettingStore()
+const AdminStore = useAdminStore()
 const router = useRouter()
 const message = useMessage()
 const dialog = useDialog()
-const theme = ref<string>("")
+const theme = ref<Theme>(AdminSettingStore.theme)
 const settingIsShow = ref<boolean>(false)
-const grayMode = ref<boolean>(store.state.admin.grayMode)
+const grayMode = ref<boolean>(AdminSettingStore.grayMode)
 const pageAnimateModeOptions = ref<Array<{ label: string; value: string }>>([
   {
     label: "zoom-fade",
@@ -36,8 +39,8 @@ const pageAnimateModeOptions = ref<Array<{ label: string; value: string }>>([
   },
 ])
 
-const changeTheme = (val: string) => {
-  store.commit("admin/setTheme", val)
+const changeTheme = (val: Theme) => {
+  AdminSettingStore.setTheme(val)
 }
 const railStyle = ({ checked }: { focused: boolean; checked: boolean }) => {
   const style: CSSProperties = {}
@@ -49,7 +52,7 @@ const railStyle = ({ checked }: { focused: boolean; checked: boolean }) => {
   return style
 }
 const changeThemeColor = (value: string) => {
-  store.commit("admin/setThemeColor", value)
+  AdminSettingStore.setThemeColor(value)
 }
 
 const logout = () => {
@@ -61,7 +64,7 @@ const logout = () => {
     negativeText: "不确定",
     onPositiveClick: () => {
       message.success("已注销")
-      store.commit("admin/setIsLogin", false)
+      AdminStore.setToken("")
       router.push("/login")
     },
   })
@@ -74,10 +77,10 @@ watch(grayMode, (v: boolean) => {
   } else {
     html.classList.remove("grayDay")
   }
-  store.commit("admin/setGrayMode", v)
+  AdminSettingStore.setGrayMode(v)
 })
 
-watch(theme, (v: string) => {
+watch(theme, (v: Theme) => {
   changeTheme(v)
 })
 
@@ -89,7 +92,7 @@ defineExpose<{
   },
 })
 
-bus.on("theme", (v: string) => {
+bus.on("theme", (v: Theme) => {
   theme.value = v
 })
 </script>
@@ -122,7 +125,7 @@ bus.on("theme", (v: string) => {
           :show-preview="true"
           placement="bottom"
           :swatches="color"
-          :default-value="store.state.admin.themeColor"
+          :default-value="AdminSettingStore.themeColor"
           @update:value="changeThemeColor"
         />
         <!-- 更多设置 此处填入 -->
@@ -135,14 +138,14 @@ bus.on("theme", (v: string) => {
         </div>
         <n-divider title-placement="center">菜单居右</n-divider>
         <div class="content">
-          <n-switch v-model:value="store.state.admin.menuToRight">
+          <n-switch v-model:value="AdminSettingStore.menuToRight">
             <template #checked>开启</template>
             <template #unchecked>关闭</template>
           </n-switch>
         </div>
         <n-divider title-placement="center">音乐模式</n-divider>
         <div class="content">
-          <n-switch v-model:value="store.state.admin.musicMode">
+          <n-switch v-model:value="AdminSettingStore.musicMode">
             <template #checked>开启</template>
             <template #unchecked>关闭</template>
           </n-switch>
@@ -151,7 +154,7 @@ bus.on("theme", (v: string) => {
         <div class="content">
           <div class="select">
             <n-select
-              v-model:value="store.state.admin.pageAnimateMode"
+              v-model:value="AdminSettingStore.pageAnimateMode"
               :options="pageAnimateModeOptions"
             />
           </div>

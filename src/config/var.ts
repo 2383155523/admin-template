@@ -1,14 +1,9 @@
-import type { adminInfo_type } from "@/types/var"
-
+export type Admin_Info = { name: string; avatar_url: string; blog_url: string }
 //虚拟管理员信息
-export const adminInfo: adminInfo_type = {
-  id: 1,
+export const adminInfo: Admin_Info = {
   name: "微若蜉蝣",
   avatar_url: "https://q2.qlogo.cn/headimg_dl?spec=100&dst_uin=2383155523",
   blog_url: "https://fuyouplus.cn",
-  qq: "2383155523",
-  email: "2383155523@qq.com",
-  password: "",
 }
 
 //项目本地储存名称前缀

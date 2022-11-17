@@ -1,6 +1,6 @@
 <template>
   <router-view #default="{ Component }" v-if="routeIsAlive">
-    <transition :name="store.state.admin.pageAnimateMode">
+    <transition :name="AdminSettingStore.pageAnimateMode">
       <keep-alive>
         <component :is="Component" :key="Route.fullPath" mode="out-in" class="route-container" />
       </keep-alive>
@@ -8,12 +8,11 @@
   </router-view>
 </template>
 <script lang="ts" setup>
-import { useRoute, useRouter } from "vue-router"
-import { useStore } from "vuex"
+import { useRoute } from "vue-router"
+import { useAdminSettingStore } from "@/stores/admin/setting"
 import { routeIsAlive } from "@/hooks/reload"
 const Route = useRoute()
-const store = useStore()
-const Router = useRouter()
+const AdminSettingStore = useAdminSettingStore()
 </script>
 
 <style lang="scss" scoped>

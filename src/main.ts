@@ -1,6 +1,6 @@
 import { createApp } from "vue"
 import root from "./App.vue"
-import setupStore from "./store"
+import { createPinia } from "pinia"
 import setupRouter from "./router"
 import setupDirectives from "./directive"
 import setupAdminLog from "@/config/log"
@@ -9,7 +9,7 @@ import type { App } from "vue"
 function setupApp() {
   const app: App = createApp(root)
 
-  setupStore(app)
+  app.use(createPinia())
 
   setupRouter(app)
 

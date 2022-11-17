@@ -1,14 +1,17 @@
 <script lang="ts" setup>
 import { ref, shallowRef } from "vue"
-import { useStore } from "vuex"
+import { useAdminSettingStore } from "@/stores/admin/setting"
+import { useAdminStore } from "@/stores/admin/index"
 import { fullScreenIn, fullScreenOut } from "@/util/util"
 import { NTooltip, useMessage, useDialog } from "naive-ui"
 import { ISun, IMoon, IFullscreenIn, IFullscreenOut, ISetting, ILogout } from "@icons/index"
 import { useRouter } from "vue-router"
 import { isPC } from "@/hooks/resize"
 import projectSetting from "./projectSetting.vue"
+import type { Theme } from "@/config/var"
 
-const store = useStore()
+const AdminSettingStore = useAdminSettingStore()
+const AdminStore = useAdminStore()
 const router = useRouter()
 const isFullScreenIn = ref<boolean>(false)
 const setting = shallowRef()
@@ -28,7 +31,7 @@ const logout = () => {
     negativeText: "不确定",
     onPositiveClick: () => {
       message.success("已注销")
-      store.commit("admin/setIsLogin", false)
+      AdminStore.setToken("")
       router.push("/login")
     },
   })
@@ -44,18 +47,18 @@ const fullScreen = () => {
   isFullScreenIn.value = !isFullScreenIn.value
 }
 
-const changeTheme = (val: string) => {
-  store.commit("admin/setTheme", val)
+const changeTheme = (val: Theme) => {
+  AdminSettingStore.setTheme(val)
 }
 </script>
 <template>
   <div class="header">
     <div class="title">
-      <span class="title-text">{{ store.state.admin.adminInfo.name }}</span>
+      <span class="title-text">{{ AdminStore.adminInfo.name }}</span>
     </div>
     <div class="logo">
-      <a :href="store.state.admin.adminInfo.blog_url" target="_blank"
-        ><img :src="store.state.admin.adminInfo.avatar_url" alt=""
+      <a :href="AdminStore.adminInfo.blog_url" target="_blank"
+        ><img :src="AdminStore.adminInfo.avatar_url" alt=""
       /></a>
     </div>
     <div class="util">
@@ -63,7 +66,7 @@ const changeTheme = (val: string) => {
         <template #trigger>
           <i-logout
             size="22"
-            :color="store.state.admin.theme == 'light' ? '#333' : '#fff'"
+            :color="AdminSettingStore.theme == 'light' ? '#333' : '#fff'"
             @click.stop="logout"
           />
         </template>
@@ -73,7 +76,7 @@ const changeTheme = (val: string) => {
         <template #trigger>
           <i-setting
             size="22"
-            :color="store.state.admin.theme == 'light' ? '#333' : '#fff'"
+            :color="AdminSettingStore.theme == 'light' ? '#333' : '#fff'"
             @click.stop="openSetting"
           />
         </template>
@@ -83,13 +86,13 @@ const changeTheme = (val: string) => {
         <template #trigger>
           <i-fullscreen-in
             size="22"
-            :color="store.state.admin.theme == 'light' ? '#333' : '#fff'"
+            :color="AdminSettingStore.theme == 'light' ? '#333' : '#fff'"
             v-if="!isFullScreenIn"
             @click.stop="fullScreen"
           />
           <i-fullscreen-out
             size="22"
-            :color="store.state.admin.theme == 'light' ? '#333' : '#fff'"
+            :color="AdminSettingStore.theme == 'light' ? '#333' : '#fff'"
             v-else
             @click.stop="fullScreen"
           />
@@ -102,17 +105,17 @@ const changeTheme = (val: string) => {
           <i-moon
             size="22"
             @click.stop="changeTheme('dark')"
-            v-if="store.state.admin.theme == 'light'"
-            :color="store.state.admin.theme == 'light' ? '#333' : '#fff'"
+            v-if="AdminSettingStore.theme == 'light'"
+            :color="AdminSettingStore.theme == 'light' ? '#333' : '#fff'"
           />
           <i-sun
+            :color="AdminSettingStore.theme == 'light' ? '#333' : '#fff'"
             size="22"
             @click.stop="changeTheme('light')"
-            :color="store.state.admin.theme == 'light' ? '#333' : '#fff'"
             v-else
           />
         </template>
-        {{ store.state.admin.theme == "light" ? "深色模式" : "浅色模式" }}
+        {{ AdminSettingStore.theme == "light" ? "深色模式" : "浅色模式" }}
       </n-tooltip>
     </div>
   </div>

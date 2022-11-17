@@ -1,6 +1,6 @@
 {
   "name": "admin-template",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "微若蜉蝣",
   "description": "一个基于Vue3的后台管理系统模板",
   "scripts": {
@@ -14,10 +14,10 @@
     "aplayer": "^1.10.1",
     "axios": "^0.21.4",
     "nprogress": "^0.2.0",
+    "pinia": "^2.0.23",
     "vue": "^3.2.25",
     "vue-router": "^4.0.11",
     "vuedraggable": "^4.1.0",
-    "vuex": "^4.0.2",
     "xiao-you-bus": "^1.0.2"
   },
   "devDependencies": {

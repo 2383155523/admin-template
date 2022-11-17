@@ -51,14 +51,14 @@
 
 <script lang="ts" setup>
 import { ref, h } from "vue"
-import { useStore } from "vuex"
 import { useRouter } from "vue-router"
 import { useNotification, NAvatar, NButton, useMessage } from "naive-ui"
 import { adminInfo } from "@/config/var"
+import { useAdminStore } from "@/stores/admin/index"
 
 const message = useMessage()
 const notification = useNotification()
-const store = useStore()
+const AdminStore = useAdminStore()
 const router = useRouter()
 const userNameIsFocus = ref<boolean>(false)
 const passWordIsFocus = ref<boolean>(false)
@@ -68,14 +68,15 @@ const userNameEl = ref<any>(null)
 const userNamePlaceholderEl = ref<any>(null)
 const passWordEl = ref<any>(null)
 const passWordPlaceholderEl = ref<any>(null)
+
 const getAdminInfo = async () => {
   if (true) {
     //登录成功
     passWord.value = ""
     userName.value = ""
-    store.commit("admin/setIsLogin", true) //更改全局登录状态
+    AdminStore.setToken("123456iamtoken") //登录成功设置token
     const data = adminInfo
-    store.commit("admin/setAdminInfo", data) //全局缓存管理员信息
+    AdminStore.setAdminInfo(data) //全局缓存管理员信息
     const timer1: any = setTimeout(() => {
       message.success("登录成功,正在跳转至首页......")
       window.$closeLoading() //关闭Loading动画
