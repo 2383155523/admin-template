@@ -22,7 +22,7 @@ const AdminStore = useAdminStore()
 const router = useRouter()
 const message = useMessage()
 const dialog = useDialog()
-const settingIsShow = ref<boolean>(true)
+const settingIsShow = ref<boolean>(false)
 const grayMode = ref<boolean>(AdminSettingStore.grayMode)
 const pageAnimateModeOptions = ref<Array<{ label: string; value: string }>>([
   {
