@@ -1,6 +1,8 @@
 import axios from "axios"
 import { devApiBaseUrl, proApiBaseUrl, httpTimeOut } from "@/config/var"
-import type { AxiosRequestConfig, AxiosInstance } from "axios"
+
+import type { AxiosRequestConfig, AxiosInstance, AxiosResponse } from "axios"
+import type { Request_Data } from "@/api/Request_Data_Type"
 
 const instance: AxiosInstance = axios.create({
   baseURL: import.meta.env.PROD ? proApiBaseUrl : devApiBaseUrl,
@@ -36,13 +38,7 @@ instance.interceptors.response.use(
   }
 )
 
-export type request_result = {
-  res: unknown
-  err: unknown
-  isSuccess: boolean
-  isError: boolean
-}
-async function req(requestConfig: AxiosRequestConfig) {
+async function req<T>(requestConfig: AxiosRequestConfig) {
   const result: request_result = {
     res: null,
     err: null,
@@ -50,8 +46,17 @@ async function req(requestConfig: AxiosRequestConfig) {
     isError: false,
   }
 
+  interface Data extends Request_Data {
+    data?: T
+  }
+  type request_result = {
+    res: Data
+    err: Data
+    isSuccess: boolean
+    isError: boolean
+  }
   await instance
-    .request(requestConfig)
+    .request<any, AxiosResponse<Data>>(requestConfig)
     .then(data => {
       result.res = data.data
       result.isSuccess = true

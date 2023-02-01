@@ -3,7 +3,7 @@
 :root {
   --themeColor: #6739b6;
   --bottom: 30px;
-  --radius:8px;
+  --radius: 8px;
   //cursorStyle
   --cursor-A: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAZCAMAAAAL146mAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAASNQTFRFAAAAAAAAAAAAAAAAAAAAGSQmGCUnDRoaAAAAGCUon6SlFyQmDhsbAAAAAAAAFyQnlJqcFyMlDw8PAAAAFyMmi5GSFiInERERAAAAFyMm+/v7gYiJFyQmABUV+vr6d36AFiMl+Pn5b3d5FyMlAAAA9vf3ZW5wFiIkAAAA9fX1XGVnFyIkAAAA8vPzVV5gFiEkAAAA8PDwTlhaFSEk7O3tRlFTFyEl1NfXGCQm6OnpQUtNEx0gAAAAQEpMERodAAAAP0lLERkcAAAAAAAAFyMmAAAAAAAAFiEjFiIlFiIln6SlFyMmAAAAAAAAAAAAAAAABQoKFSEjAAAAAAAABgwMFSEjoKSm09XWFyImBg0NFCAiFiEjERkZAAAA/Pz8+/v7////3+LoFQAAAF50Uk5TAAECAwVydxQKoc6FEwQOpMyCERCmyX4PEaf+xXkM/sJ0/b5uCfy7aQj7uGMH+rVcBviyVvawTeqU9bJPC7VZFLZaGA2pHA99q6zWqBUeISMxlBITK5LV6pspf4o9F3yyPVgAAAABYktHRGDFt3wQAAAACW9GRnMAAAAAAAAAAgDoHNRMAAAACXBIWXMAAADIAAAAyABj+uetAAAACXZwQWcAAAAgAAAAIACH+pydAAAA8klEQVQY013R6VbCMBAF4E4SJYoBtILFDdCKVREr4IKirCIq4oI7Mr7/W1hoqInz8zs5Se5cwzCAUAKGOsCmpkNUNaB8ZjY8pxqISBRj8wuKATMX8SeeWPozYFYScXlldS0wn3A9leYTk4SZjU1b/mVCuJXddnwLCHd293JEJ9zPH7hEJzwsFEemEpaOjhnohCenNtGpfHZeoRqVLy6r/07V6o3m+C4vtpzWVXv8oohctzqdm1uP7roO9VfYve89PD55lnx2ZSLetvqNl9e39w+TyeBUMLfS//wafDdFsDMAYZvDoeUQrRWX85xW1KhNWecvqKk8tzJNk4wAAAAldEVYdGRhdGU6Y3JlYXRlADIwMTgtMTItMTZUMDM6NTY6MzYrMDA6MDAqAmTNAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDE4LTEyLTE2VDAzOjU2OjM1KzAwOjAwarfG7AAAAABJRU5ErkJggg==),
     auto !important;
@@ -33,6 +33,15 @@ html.light {
   --tabItemActive: #fff;
   --tabsBgColor: #f7f7fa;
   --tabsItemColor: #333639;
+  //switch css varible
+  --wrapper-bg: #9bb7e8;
+  --hill-left: #5c6090;
+  --hill-right: #4b4f85;
+  --sky-bg-night: linear-gradient(to bottom, rgba(185, 147, 212, 1) 0%, rgba(230, 224, 237, 1) 65%);
+  --tree-trunk: #3b3853;
+  --tree: rgba(76, 80, 139, 1);
+  --sun: linear-gradient(24deg, rgba(255, 219, 156, 1) 0%, rgba(254, 195, 87, 1) 53%);
+  --day-night: rgba(242, 198, 160, 0.6);
 }
 html.dark {
   --themeColor: #6739b6;
@@ -49,4 +58,13 @@ html.dark {
   --tabItemActive: #454548;
   --tabsBgColor: #303033;
   --tabsItemColor: #fff;
+  //switch css varible
+  --wrapper-bg: #111827;
+  --hill-left: #602291;
+  --hill-right: #511a7f;
+  --sky-bg-day: linear-gradient(180deg, rgba(231, 95, 122, 1) 0%, rgba(255, 177, 104, 1) 83%);
+  --tree-trunk: #3b3853;
+  --tree: #78177b;
+  --sun: linear-gradient(180deg, rgba(255, 219, 156, 1) 0%, rgba(254, 195, 87, 1) 53%);
+  --day-night: #6c528cb3;
 }

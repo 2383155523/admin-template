@@ -1,8 +1,7 @@
 <script lang="ts" setup>
 import color from "@/config/color"
-import bus from "@/eventBus/admin"
+import themeSwitch from "./themeSwitch.vue"
 import { ref, watch, defineExpose } from "vue"
-import { ISun, IMoon } from "@icons/index"
 import {
   NDrawer,
   NDrawerContent,
@@ -17,16 +16,13 @@ import {
 import { useAdminSettingStore } from "@/stores/admin/setting"
 import { useAdminStore } from "@/stores/admin/index"
 import { useRouter } from "vue-router"
-import type { CSSProperties } from "vue"
-import type { Theme } from "@/config/var"
 
 const AdminSettingStore = useAdminSettingStore()
 const AdminStore = useAdminStore()
 const router = useRouter()
 const message = useMessage()
 const dialog = useDialog()
-const theme = ref<Theme>(AdminSettingStore.theme)
-const settingIsShow = ref<boolean>(false)
+const settingIsShow = ref<boolean>(true)
 const grayMode = ref<boolean>(AdminSettingStore.grayMode)
 const pageAnimateModeOptions = ref<Array<{ label: string; value: string }>>([
   {
@@ -39,18 +35,6 @@ const pageAnimateModeOptions = ref<Array<{ label: string; value: string }>>([
   },
 ])
 
-const changeTheme = (val: Theme) => {
-  AdminSettingStore.setTheme(val)
-}
-const railStyle = ({ checked }: { focused: boolean; checked: boolean }) => {
-  const style: CSSProperties = {}
-  if (checked) {
-    style.background = "#fff"
-  } else {
-    style.background = "#000e1c"
-  }
-  return style
-}
 const changeThemeColor = (value: string) => {
   AdminSettingStore.setThemeColor(value)
 }
@@ -80,20 +64,12 @@ watch(grayMode, (v: boolean) => {
   AdminSettingStore.setGrayMode(v)
 })
 
-watch(theme, (v: Theme) => {
-  changeTheme(v)
-})
-
 defineExpose<{
   openSetting: () => void
 }>({
   openSetting: () => {
     settingIsShow.value = true
   },
-})
-
-bus.on("theme", (v: Theme) => {
-  theme.value = v
 })
 </script>
 
@@ -106,19 +82,7 @@ bus.on("theme", (v: Theme) => {
       <template #default>
         <n-divider title-placement="center">主题</n-divider>
         <div class="content">
-          <n-switch
-            v-model:value="theme"
-            :rail-style="railStyle"
-            checked-value="dark"
-            unchecked-value="light"
-          >
-            <template #checked>
-              <ISun size="20" color="var(--themeColor)" />
-            </template>
-            <template #unchecked>
-              <IMoon size="20" color="var(--themeColor)" />
-            </template>
-          </n-switch>
+          <themeSwitch />
         </div>
         <n-divider title-placement="center">主题色</n-divider>
         <n-color-picker
