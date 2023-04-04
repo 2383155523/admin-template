@@ -5,7 +5,6 @@ import { useRouteStackStore } from "@/stores/admin/routeStack"
 import { getStorage } from "../util/cache"
 import { createRouter, createWebHashHistory } from "vue-router"
 import { useVueRouterConfig } from "./utils"
-import "./utils"
 import type { App } from "vue"
 
 //nprogress 配置
