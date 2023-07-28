@@ -4,7 +4,7 @@ import DefineOptions from "unplugin-vue-define-options/vite"
 import { resolve } from "path"
 
 export default defineConfig({
-  base: "/admin-template/", //production Mode
+  // base: "/admin-template/", //production Mode
   // base: "/", //development Mode
   define: {
     _VUE_OPTIONS_API_: JSON.stringify(false),
