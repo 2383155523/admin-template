@@ -11,7 +11,7 @@ export const projectStoragePrefix = "adminTemplate_"
 
 //默认主题色
 //设置前请前往 Storage 清除缓存才能能生效
-export const defaultThemeColor = "#6739b6"
+export const defaultThemeColor = "#0ea9e3"
 
 //默认主题
 export type Theme = "light" | "dark"

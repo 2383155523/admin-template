@@ -1,1 +1,0 @@
-import{_ as e}from"./index.a212cc1c.js";import{b as _,c as o,h as t}from"./vendor.c92f304c.js";const a={class:"index"},c=_({setup(s){return console.log("Page2--->Child\u52A0\u8F7D\u3002\u3002\u3002"),(r,n)=>(o(),t("div",a,"Page2--->Child"))}});var i=e(c,[["__scopeId","data-v-41a2c86f"]]);export{i as default};
