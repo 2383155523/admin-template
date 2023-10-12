@@ -27,7 +27,7 @@ export const menuDefaultIsToRight = false
 export const musicDefaulMode = false
 
 //页面默认动画模式
-export type PageAnimateMode = "zoom-fade" | "top-fade"
+export type PageAnimateMode = "zoom-fade" | "top-fade" | "fade-transform"
 export const defaultPageAnimateMode: PageAnimateMode = "zoom-fade"
 
 //浅色主题自动开启时间

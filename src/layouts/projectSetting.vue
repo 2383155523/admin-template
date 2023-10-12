@@ -33,6 +33,10 @@ const pageAnimateModeOptions = ref<Array<{ label: string; value: string }>>([
     label: "top-fade",
     value: "top-fade",
   },
+  {
+    label: "fade-transform",
+    value: "fade-transform",
+  },
 ])
 
 const changeThemeColor = (value: string) => {

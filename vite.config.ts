@@ -9,6 +9,10 @@ export default defineConfig({
   define: {
     _VUE_OPTIONS_API_: JSON.stringify(false),
   },
+  server: {
+    port: 8080,
+    open: true
+  },
   build: {
     cssCodeSplit: false,
     chunkSizeWarningLimit: 1024,

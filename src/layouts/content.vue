@@ -1,8 +1,11 @@
 <template>
   <router-view #default="{ Component }" v-if="routeIsAlive">
-    <transition :name="AdminSettingStore.pageAnimateMode">
+    <transition
+      :name="AdminSettingStore.pageAnimateMode"
+      :mode="AdminSettingStore.pageAnimateMode == 'zoom-fade' ? 'default' : 'out-in'"
+    >
       <keep-alive>
-        <component :is="Component" :key="Route.fullPath" mode="out-in" class="route-container" />
+        <component :is="Component" :key="Route.fullPath" class="route-container" />
       </keep-alive>
     </transition>
   </router-view>
@@ -21,18 +24,53 @@ const AdminSettingStore = useAdminSettingStore()
   height: 100% !important;
   border-radius: var(--radius);
 }
+
+/* fade-transform */
+
+.fade-transform-leave-active {
+  animation: fadeTransformOut 0.4s ease-in-out;
+}
+
+.fade-transform-enter-active {
+  animation: fadeTransformIn 0.4s ease-in-out;
+}
+
+@keyframes fadeTransformIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fadeTransformOut {
+  0% {
+    opacity: 1;
+  }
+  0% {
+    opacity: 0.5;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+}
+
 //top-fade
 .top-fade-leave-active {
   animation: fadeTopOut 0.8s ease-in-out;
+}
+.top-fade-enter-active {
+  animation: fadeTopIn 0.3s ease-in-out;
 }
 
 @keyframes fadeTopIn {
   0% {
     opacity: 0;
-    transform: translateY(30px);
-  }
-  50% {
-    transform: translateY(0px);
+    transform: translateY(20px);
   }
 
   100% {
@@ -44,8 +82,8 @@ const AdminSettingStore = useAdminSettingStore()
     opacity: 1;
   }
   50% {
-    transform: translateY(20px);
     opacity: 0.5;
+    transform: translateY(20px);
   }
 
   100% {
