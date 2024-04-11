@@ -3,7 +3,7 @@ import { defineConfig } from "vite"
 import DefineOptions from "unplugin-vue-define-options/vite"
 import { resolve } from "path"
 
-export default defineConfig({
+export default defineConfig(() => ({
   // base: "/admin-template/", //production Mode
   // base: "/", //development Mode
   define: {
@@ -11,7 +11,12 @@ export default defineConfig({
   },
   server: {
     port: 8080,
-    open: true
+    open: true,
+    proxy: {
+      [import.meta.env.VITE_APP_BASE_API]: {
+        target: import.meta.env.VITE_APP_PROXY_API,
+      },
+    },
   },
   build: {
     cssCodeSplit: false,
@@ -63,4 +68,4 @@ export default defineConfig({
       { find: "@mock", replacement: resolve(__dirname, "src/mock") },
     ],
   },
-})
+}))

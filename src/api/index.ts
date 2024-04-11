@@ -1,46 +1,50 @@
 import req from "@/http"
-/***
- * 示例一
- */
-export interface addArticle_interface {
-  title: string
-  content: string
-  addTime: string
-  tag: string
-  classify: string
-  isPublishState: number
-  articleHeaderImg: string
+export interface LoginDto {
+  qq: string
+  password: string
 }
-export const addArticle = async (data: addArticle_interface) => {
-  const { res, err, isSuccess } = await req({
+
+export const login = async (data: LoginDto) => {
+  const { res, err, isSuccess } = await req<string>({
     method: "post",
-    url: "/addArticle",
+    url: "/login",
     data,
   })
-  return isSuccess ? Promise.resolve(res) : Promise.reject(err)
+  return isSuccess ? res : err
 }
 
-export interface getArticle_interface {
-  article_id: number
-  article_title: string
-  article_addTime: string
-  article_readNum: number
-  hasCommentTotal: number
-  article_content: string
-  article_classify: string
-  article_isPublishState: number
-  article_tag: string
-  article_headerImg: string
+export interface Category {
+  category_id: number
+  category_name: string
 }
-/***
- * 示例二
- */
-export const getArticle = async (data?: { id?: number }) => {
-  const { res, err, isSuccess } = await req<Array<getArticle_interface>>({
+
+export const getAllCategroy = async () => {
+  const { res, err, isSuccess } = await req<Array<Category>>({
     method: "get",
-    url: "/getArticle",
-    params: data,
+    url: "/category/list",
   })
+  return isSuccess ? res : err
+}
 
-  return isSuccess ? Promise.resolve(res) : Promise.reject(err)
+export const upload = async (data: FormData, config) => {
+  const { res, err, isSuccess } = await req<{
+    destination: string
+    encoding: string
+    fieldname: string
+    filename: string
+    mimetype: string
+    originalname: string
+    path: string
+    size: number
+    url: string
+  }>({
+    method: "post",
+    url: "/upload",
+    data,
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+    ...config,
+  })
+  return isSuccess ? res : err
 }

@@ -2,12 +2,8 @@
   "compilerOptions": {
     "composite": true,
     "module": "esnext",
-    "moduleResolution": "node",
-    "types": [
-      "unplugin-vue-define-options"
-    ],
+    "types": ["vite/client"],
+    "moduleResolution": "node"
   },
-  "include": [
-    "vite.config.ts"
-  ]
+  "include": ["vite.config.ts"]
 }

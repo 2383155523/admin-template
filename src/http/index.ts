@@ -2,10 +2,10 @@ import axios from "axios"
 import { devApiBaseUrl, proApiBaseUrl, httpTimeOut } from "@/config/var"
 
 import type { AxiosRequestConfig, AxiosInstance, AxiosResponse } from "axios"
-import type { Request_Data } from "@/api/Request_Data_Type"
+import type { ResponseBase } from "@/api/ResponseBase"
 
 const instance: AxiosInstance = axios.create({
-  baseURL: import.meta.env.PROD ? proApiBaseUrl : devApiBaseUrl,
+  baseURL: import.meta.env.VITE_APP_BASE_API,
   timeout: httpTimeOut,
 })
 
@@ -43,27 +43,22 @@ async function req<T>(requestConfig: AxiosRequestConfig) {
     res: null,
     err: null,
     isSuccess: false,
-    isError: false,
   }
 
-  interface Data extends Request_Data {
-    data?: T
-  }
   type request_result = {
-    res: Data
-    err: Data
+    res: ResponseBase<T>
+    err: ResponseBase<T>
     isSuccess: boolean
-    isError: boolean
   }
   await instance
-    .request<any, AxiosResponse<Data>>(requestConfig)
+    .request<any, AxiosResponse<ResponseBase<T>>>(requestConfig)
     .then(data => {
       result.res = data.data
       result.isSuccess = true
     })
     .catch(err => {
       result.err = err
-      result.isError = true
+      result.isSuccess = false
     })
   return result
 }
