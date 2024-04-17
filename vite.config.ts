@@ -1,12 +1,11 @@
 import vue from "@vitejs/plugin-vue"
-import { defineConfig, loadEnv, type ConfigEnv } from "vite"
 import DefineOptions from "unplugin-vue-define-options/vite"
+import { defineConfig, loadEnv, type ConfigEnv } from "vite"
 import { resolve } from "path"
 
 export default defineConfig(({ command, mode }: ConfigEnv) => {
   const root = process.cwd()
   const { VITE_APP_BASE_API, VITE_APP_PROXY_API } = loadEnv(mode, root)
-
 
   return {
     // base: "/admin-template/", //production Mode

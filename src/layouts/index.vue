@@ -53,6 +53,8 @@ const initAdminInfo = () => {
 }
 const initRouteStack = () => {
   const RouteStacks = JSON.parse(getStorage("routeStack"))
+  // console.log('RouteStacks');
+
   RouteStackStore.setRouterStack(
     RouteStacks
       ? RouteStacks
@@ -65,6 +67,7 @@ const initRouteStack = () => {
         ]
   )
 }
+initRouteStack()
 const initTheme = () => {
   const hours = new Date().getHours()
   if (darkThemeSetupTime(hours)) {
@@ -129,7 +132,6 @@ const TimeTip = () => {
 }
 
 onMounted(() => {
-  initRouteStack()
   initAdminInfo()
   initTheme()
   isShowTimeTip && TimeTip()

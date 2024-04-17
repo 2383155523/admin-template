@@ -64,6 +64,7 @@ const RouteStackStore = useRouteStackStore()
 const message = useMessage()
 const loadingBar = useLoadingBar()
 const drag = ref(false)
+
 const routeStack = computed({
   get: () => {
     return RouteStackStore.routeStack

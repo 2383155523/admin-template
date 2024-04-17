@@ -1,21 +1,24 @@
 import { createApp } from "vue"
-import root from "./App.vue"
-import { createPinia } from "pinia"
-import setupRouter from "./router"
-import setupDirectives from "./directive"
+import root from "@/App.vue"
+import { setupStore } from "@/stores"
+import router, { setupRouter } from "@/router"
+import setupDirectives from "@/directive"
 import setupAdminLog from "@/config/log"
 import type { App } from "vue"
 
-function setupApp() {
+async function setupApp() {
   const app: App = createApp(root)
 
-  app.use(createPinia())
-
-  setupRouter(app)
+  // 挂载状态管理
+  setupStore(app)
 
   setupDirectives(app)
 
   setupAdminLog()
+
+  setupRouter(app)
+
+  await router.isReady()
 
   app.mount("#app")
 }
