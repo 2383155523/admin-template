@@ -16,11 +16,12 @@
       >
         <template #item="{ element, index }">
           <span
-            class="routerItem"
+            class="routerItem fade-in-left"
             :key="element.path"
             @click="link(element.path)"
             :class="{
               currentRouterItem: route.path == element.path,
+              'fade-out-right': currentCloseRouteIndexs.includes(index),
             }"
           >
             {{ element.title }}
@@ -108,6 +109,7 @@ const settingOptions = [
     icon: () => h(ICloseAll),
   },
 ]
+const currentCloseRouteIndexs = ref<Array<number>>([])
 
 const closeRouter = (index: number) => {
   if (routeStack.value[index].title == "主控台") {
@@ -115,21 +117,26 @@ const closeRouter = (index: number) => {
     return
   }
   const originRouterPath: string = RouteStackStore.routeStack[index].path
-  RouteStackStore.filterRouterStack(index)
-  if (route.path == originRouterPath) {
-    //只有当前路由相同时才做判断跳转
-    if (index == RouteStackStore.routeStack.length) {
-      //最后一个路由
-      router.push({
-        path: RouteStackStore.routeStack[index - 1].path,
-      })
-    } else {
-      //不是最后一个路由
-      router.push({
-        path: RouteStackStore.routeStack[index].path,
-      })
+  currentCloseRouteIndexs.value = [index]
+  const timer = setTimeout(() => {
+    RouteStackStore.filterRouterStack(index)
+    currentCloseRouteIndexs.value = []
+    if (route.path == originRouterPath) {
+      //只有当前路由相同时才做判断跳转
+      if (index == RouteStackStore.routeStack.length) {
+        //最后一个路由
+        router.push({
+          path: RouteStackStore.routeStack[index - 1].path,
+        })
+      } else {
+        //不是最后一个路由
+        router.push({
+          path: RouteStackStore.routeStack[index].path,
+        })
+      }
     }
-  }
+    clearTimeout(timer)
+  }, 400)
 }
 
 const link = (url: string) => {
@@ -155,20 +162,42 @@ const closeCurrent = () => {
 
 const closeOther = () => {
   //关闭其他
+  const currentCloseRouteIndexsTmp = []
   const index = RouteStackStore.routeStack.findIndex((item: routerItem) => item.path == route.path)
-  RouteStackStore.setRouterStack(
-    RouteStackStore.routeStack.filter(
-      (item: routerItem, i: number) => index == i || item.title == "主控台"
-    )
-  )
+  const filterResult = RouteStackStore.routeStack.filter((item: routerItem, i: number) => {
+    if (index == i || item.title == "主控台") {
+      return true
+    } else {
+      currentCloseRouteIndexsTmp.push(i)
+      return false
+    }
+  })
+  currentCloseRouteIndexs.value = currentCloseRouteIndexsTmp
+  const timer = setTimeout(() => {
+    RouteStackStore.setRouterStack(filterResult)
+    currentCloseRouteIndexs.value = []
+    clearTimeout(timer)
+  }, 400)
 }
 
 const closeAll = () => {
   //关闭所有
-  RouteStackStore.setRouterStack(
-    RouteStackStore.routeStack.filter((item: routerItem) => item.title == "主控台")
-  )
-  router.push({ path: "/" })
+  const currentCloseRouteIndexsTmp = []
+  const filterResult = RouteStackStore.routeStack.filter((item: routerItem, index) => {
+    if (item.title == "主控台") {
+      return true
+    } else {
+      currentCloseRouteIndexsTmp.push(index)
+      return false
+    }
+  })
+  currentCloseRouteIndexs.value = currentCloseRouteIndexsTmp
+  const timer = setTimeout(() => {
+    RouteStackStore.setRouterStack(filterResult)
+    currentCloseRouteIndexs.value = []
+    router.push({ path: "/" })
+    clearTimeout(timer)
+  }, 400)
 }
 </script>
 

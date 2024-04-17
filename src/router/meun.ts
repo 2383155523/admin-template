@@ -77,6 +77,26 @@ const menuRoutes: Array<route> = [
     ],
   },
   {
+    path: "/empty",
+    component: Layout,
+    icon: ITag,
+    meta: {
+      title: "空白页",
+    },
+    onlyOne: true,
+    children: [
+      {
+        path: "index",
+        name: "empty-index",
+        fullPath: "/empty/index",
+        component: () => import("@pages/empty/index.vue"),
+        meta: {
+          title: "空白页",
+        },
+      },
+    ],
+  },
+  {
     path: "/page3",
     fullPath: "/page3",
     component: Layout,
