@@ -1,4 +1,4 @@
 [build]
-  command = "npm install -f"
+  command = "npm install --legacy-peer-deps"
   # 或者使用 yarn 安装依赖，将以下行注释解除
   # command = "yarn install"
