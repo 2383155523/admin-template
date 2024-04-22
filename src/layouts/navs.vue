@@ -19,6 +19,8 @@
             class="routerItem fade-in-left"
             :key="element.path"
             @click="link(element.path)"
+            @dblclick="reloadCurrent(element.path)"
+            @mousedown="mouseDownHandle($event, index)"
             :class="{
               currentRouterItem: route.path == element.path,
               'fade-out-right': currentCloseRouteIndexs.includes(index),
@@ -110,6 +112,11 @@ const settingOptions = [
     icon: () => h(ICloseAll),
   },
 ]
+const mouseDownHandle = (e: MouseEvent, index: number) => {
+  if (e.button == 1) {
+    closeRouter(index)
+  }
+}
 const currentCloseRouteIndexs = ref<Array<number>>([])
 
 const closeRouter = (index: number) => {
@@ -143,6 +150,12 @@ const closeRouter = (index: number) => {
 const link = (url: string) => {
   if (route.path != url) {
     router.push({ path: url })
+  }
+}
+
+const reloadCurrent = (url: string) => {
+  if (route.path == url) {
+    refreshCurrent()
   }
 }
 
