@@ -16,7 +16,7 @@
       >
         <template #item="{ element, index }">
           <span
-            class="routerItem fade-in-left"
+            class="routerItem"
             :key="element.path"
             @click="link(element.path)"
             @dblclick="reloadCurrent(element.path)"
@@ -24,6 +24,7 @@
             :class="{
               currentRouterItem: route.path == element.path,
               'fade-out-right': currentCloseRouteIndexs.includes(index),
+              'fade-in-left': element.isFirst,
             }"
           >
             {{ element.title }}

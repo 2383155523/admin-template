@@ -63,6 +63,7 @@ const initRouteStack = () => {
             canItBeClosed: false,
             title: "主控台",
             path: "/dashboard",
+            isFirst: false,
           },
         ]
   )

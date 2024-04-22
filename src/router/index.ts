@@ -40,11 +40,17 @@ const createRouterGuards = (router: Router) => {
         if (routerStackBlackList.every(name => to.name != name)) {
           //将不在本地缓存路由栈黑名单中的路由存入
           const RouteStackStore = useRouteStackStore()
-          RouteStackStore.pushRouterStack({
+          const routeItem = {
             canItBeClosed: true,
             title: to.meta.title,
             path: to.path,
-          })
+            isFirst: true,
+          }
+          RouteStackStore.pushRouterStack(routeItem)
+          const timer = setTimeout(() => {
+            routeItem.isFirst = false
+            clearTimeout(timer)
+          }, 400)
         }
         next()
       }

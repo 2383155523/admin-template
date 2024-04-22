@@ -5,6 +5,7 @@ export interface routerItem {
   canItBeClosed: boolean
   path: string
   title: string
+  isFirst: boolean
 }
 interface State {
   routeStack: Array<routerItem>
