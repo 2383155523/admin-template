@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import color from "@/config/color"
-import themeSwitch from "./themeSwitch.vue"
-import { ref, watch, defineExpose } from "vue"
+import color from '@/config/color'
+import themeSwitch from './themeSwitch.vue'
+import { ref, watch, defineExpose } from 'vue'
 import {
   NDrawer,
   NDrawerContent,
@@ -12,10 +12,10 @@ import {
   NButton,
   useMessage,
   useDialog,
-} from "naive-ui"
-import { useAdminSettingStore } from "@/stores/admin/setting"
-import { useAdminStore } from "@/stores/admin/index"
-import { useRouter } from "vue-router"
+} from 'naive-ui'
+import { useAdminSettingStore } from '@/stores/admin/setting'
+import { useAdminStore } from '@/stores/admin/index'
+import { useRouter } from 'vue-router'
 
 const AdminSettingStore = useAdminSettingStore()
 const AdminStore = useAdminStore()
@@ -26,16 +26,16 @@ const settingIsShow = ref<boolean>(false)
 const grayMode = ref<boolean>(AdminSettingStore.grayMode)
 const pageAnimateModeOptions = ref<Array<{ label: string; value: string }>>([
   {
-    label: "zoom-fade",
-    value: "zoom-fade",
+    label: 'zoom-fade',
+    value: 'zoom-fade',
   },
   {
-    label: "top-fade",
-    value: "top-fade",
+    label: 'top-fade',
+    value: 'top-fade',
   },
   {
-    label: "fade-transform",
-    value: "fade-transform",
+    label: 'fade-transform',
+    value: 'fade-transform',
   },
 ])
 
@@ -46,24 +46,24 @@ const changeThemeColor = (value: string) => {
 const logout = () => {
   //退出登录
   dialog.warning({
-    title: "退出登录",
-    content: "确定退出登录吗?",
-    positiveText: "确定",
-    negativeText: "不确定",
+    title: '退出登录',
+    content: '确定退出登录吗?',
+    positiveText: '确定',
+    negativeText: '不确定',
     onPositiveClick: () => {
-      message.success("已注销")
-      AdminStore.setToken("")
-      router.push("/login")
+      message.success('已注销')
+      AdminStore.setToken('')
+      router.push('/login')
     },
   })
 }
 
 watch(grayMode, (v: boolean) => {
-  const html: HTMLHtmlElement = document.querySelector("html")
+  const html: HTMLHtmlElement = document.querySelector('html')
   if (v) {
-    html.classList.add("grayDay")
+    html.classList.add('grayDay')
   } else {
-    html.classList.remove("grayDay")
+    html.classList.remove('grayDay')
   }
   AdminSettingStore.setGrayMode(v)
 })

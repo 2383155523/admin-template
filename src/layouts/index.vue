@@ -21,21 +21,21 @@
   </div>
 </template>
 <script lang="ts" setup>
-import VHeader from "@/layouts/vHeader.vue"
-import RouteNav from "@/layouts/navs.vue"
-import sideMenu from "@/layouts/sideMenu.vue"
-import routerContent from "@/layouts/content.vue"
-import partLoading from "@utilCop/loading/partLoading/index.vue"
-import aplayer from "@/utilComponents/aplayer/index.vue"
-import { onMounted, h } from "vue"
-import { useAdminStore } from "@/stores/admin/index"
-import { useRouteStackStore } from "@/stores/admin/routeStack"
-import { useAdminSettingStore } from "@/stores/admin/setting"
-import { getStorage } from "@/util/cache"
-import { isPC } from "@/hooks/resize"
-import { routeIsAlive } from "@/hooks/reload"
-import { useNotification, NAvatar, NButton, useMessage } from "naive-ui"
-import { lightThemeSetupTime, darkThemeSetupTime, adminInfo, isShowTimeTip } from "@/config/var"
+import VHeader from '@/layouts/vHeader.vue'
+import RouteNav from '@/layouts/navs.vue'
+import sideMenu from '@/layouts/sideMenu.vue'
+import routerContent from '@/layouts/content.vue'
+import partLoading from '@utilCop/loading/partLoading/index.vue'
+import aplayer from '@/utilComponents/aplayer/index.vue'
+import { onMounted, h } from 'vue'
+import { useAdminStore } from '@/stores/admin/index'
+import { useRouteStackStore } from '@/stores/admin/routeStack'
+import { useAdminSettingStore } from '@/stores/admin/setting'
+import { getStorage } from '@/util/cache'
+import { isPC } from '@/hooks/resize'
+import { routeIsAlive } from '@/hooks/reload'
+import { useNotification, NAvatar, NButton, useMessage } from 'naive-ui'
+import { lightThemeSetupTime, darkThemeSetupTime, adminInfo, isShowTimeTip } from '@/config/var'
 
 const notification = useNotification()
 const message = useMessage()
@@ -47,12 +47,12 @@ const AdminSettingStore = useAdminSettingStore()
 
 const initAdminInfo = () => {
   //初始化Token
-  AdminStore.token = getStorage("token")
+  AdminStore.token = getStorage('token')
   //初始化管理员信息
   AdminStore.setAdminInfo(adminInfo)
 }
 const initRouteStack = () => {
-  const RouteStacks = JSON.parse(getStorage("routeStack"))
+  const RouteStacks = JSON.parse(getStorage('routeStack'))
   // console.log('RouteStacks');
 
   RouteStackStore.setRouterStack(
@@ -61,8 +61,8 @@ const initRouteStack = () => {
       : [
           {
             canItBeClosed: false,
-            title: "主控台",
-            path: "/dashboard",
+            title: '主控台',
+            path: '/dashboard',
             isFirst: false,
           },
         ]
@@ -72,9 +72,9 @@ initRouteStack()
 const initTheme = () => {
   const hours = new Date().getHours()
   if (darkThemeSetupTime(hours)) {
-    AdminSettingStore.setTheme("dark")
+    AdminSettingStore.setTheme('dark')
   } else if (lightThemeSetupTime(hours)) {
-    AdminSettingStore.setTheme("light")
+    AdminSettingStore.setTheme('light')
   }
 }
 
@@ -84,27 +84,27 @@ const TimeTip = () => {
   let content = null
   if (hours >= 1 && hours <= 4) {
     //凌晨
-    content = "已经凌晨了,再忙也要注意休息啊！"
+    content = '已经凌晨了,再忙也要注意休息啊！'
   } else if (hours >= 5 && hours <= 10) {
     //早上
-    content = "一日之计在于晨，新的一天开始了！"
+    content = '一日之计在于晨，新的一天开始了！'
   } else if (hours >= 11 && hours <= 12) {
     //中午
-    content = "肚子饿了吧,该去干饭了，然后午休一下吧！"
+    content = '肚子饿了吧,该去干饭了，然后午休一下吧！'
   } else if (hours >= 13 && hours <= 18) {
     //下午
-    content = "悠闲的下午时光开始了，给自己点杯下午茶吧！"
+    content = '悠闲的下午时光开始了，给自己点杯下午茶吧！'
   } else if (hours >= 19 || hours == 0) {
     //晚上
-    content = "晚餐过后，更适合出门散步吹吹凉风呢！"
+    content = '晚餐过后，更适合出门散步吹吹凉风呢！'
   }
   const n = notification.create({
-    title: "小蝣温馨提示:",
+    title: '小蝣温馨提示:',
     content,
     meta: new Date().toLocaleString(),
     avatar: () =>
       h(NAvatar, {
-        size: "small",
+        size: 'small',
         round: false,
         src: AdminStore.adminInfo.avatar_url,
       }),
@@ -113,19 +113,19 @@ const TimeTip = () => {
         NButton,
         {
           text: true,
-          type: "primary",
+          type: 'primary',
           onClick: () => {
             markAsRead = true
             n.destroy()
           },
         },
         {
-          default: () => "已读",
+          default: () => '已读',
         }
       ),
     onClose: () => {
       if (!markAsRead) {
-        message.warning("请设为已读")
+        message.warning('请设为已读')
         return false
       }
     },

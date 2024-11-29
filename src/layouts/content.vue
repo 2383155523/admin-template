@@ -11,9 +11,9 @@
   </router-view>
 </template>
 <script lang="ts" setup>
-import { useRoute } from "vue-router"
-import { useAdminSettingStore } from "@/stores/admin/setting"
-import { routeIsAlive } from "@/hooks/reload"
+import { useRoute } from 'vue-router'
+import { useAdminSettingStore } from '@/stores/admin/setting'
+import { routeIsAlive } from '@/hooks/reload'
 const Route = useRoute()
 const AdminSettingStore = useAdminSettingStore()
 </script>

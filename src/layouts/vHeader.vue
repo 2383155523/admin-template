@@ -1,14 +1,14 @@
 <script lang="ts" setup>
-import { ref, shallowRef } from "vue"
-import { useAdminSettingStore } from "@/stores/admin/setting"
-import { useAdminStore } from "@/stores/admin/index"
-import { fullScreenIn, fullScreenOut } from "@/util/util"
-import { NTooltip, useMessage, useDialog } from "naive-ui"
-import { ISun, IMoon, IFullscreenIn, IFullscreenOut, ISetting, ILogout } from "@icons/index"
-import { useRouter } from "vue-router"
-import { isPC } from "@/hooks/resize"
-import projectSetting from "./projectSetting.vue"
-import type { Theme } from "@/config/var"
+import { ref, shallowRef } from 'vue'
+import { useAdminSettingStore } from '@/stores/admin/setting'
+import { useAdminStore } from '@/stores/admin/index'
+import { fullScreenIn, fullScreenOut } from '@/util/util'
+import { NTooltip, useMessage, useDialog } from 'naive-ui'
+import { ISun, IMoon, IFullscreenIn, IFullscreenOut, ISetting, ILogout } from '@icons/index'
+import { useRouter } from 'vue-router'
+import { isPC } from '@/hooks/resize'
+import projectSetting from './projectSetting.vue'
+import type { Theme } from '@/config/var'
 
 const AdminSettingStore = useAdminSettingStore()
 const AdminStore = useAdminStore()
@@ -25,14 +25,14 @@ const openSetting = () => {
 const logout = () => {
   //退出登录
   dialog.warning({
-    title: "退出登录",
-    content: "确定退出登录吗?",
-    positiveText: "确定",
-    negativeText: "不确定",
+    title: '退出登录',
+    content: '确定退出登录吗?',
+    positiveText: '确定',
+    negativeText: '不确定',
     onPositiveClick: () => {
-      message.success("已注销")
-      AdminStore.setToken("")
-      router.push("/login")
+      message.success('已注销')
+      AdminStore.setToken('')
+      router.push('/login')
     },
   })
 }
@@ -98,7 +98,7 @@ const changeTheme = (val: Theme) => {
           />
         </template>
 
-        {{ isFullScreenIn ? "退出全屏" : "进入全屏" }}
+        {{ isFullScreenIn ? '退出全屏' : '进入全屏' }}
       </n-tooltip>
       <n-tooltip trigger="hover" v-if="isPC">
         <template #trigger>
@@ -115,7 +115,7 @@ const changeTheme = (val: Theme) => {
             v-else
           />
         </template>
-        {{ AdminSettingStore.theme == "light" ? "深色模式" : "浅色模式" }}
+        {{ AdminSettingStore.theme == 'light' ? '深色模式' : '浅色模式' }}
       </n-tooltip>
     </div>
   </div>

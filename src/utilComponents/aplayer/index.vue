@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import { shallowRef, onMounted, onUnmounted } from "vue"
-import APlayer from "aplayer"
-import "aplayer/dist/APlayer.min.css"
-import { WangYiYunMusicListId } from "@/config/var"
+import { shallowRef, onMounted, onUnmounted } from 'vue'
+import APlayer from 'aplayer'
+import 'aplayer/dist/APlayer.min.css'
+import { WangYiYunMusicListId } from '@/config/var'
 let aplayerInstance = null
 const aplayer = shallowRef()
 
@@ -11,7 +11,7 @@ function createAplayer(id: number | string) {
   fetch(url)
     .then(res => res.json())
     .then(data => {
-      const theme = getComputedStyle(document.documentElement).getPropertyValue("--themeColor")
+      const theme = getComputedStyle(document.documentElement).getPropertyValue('--themeColor')
       const songs = []
       data.forEach(song => {
         songs.push({
@@ -26,13 +26,13 @@ function createAplayer(id: number | string) {
       aplayerInstance = new APlayer({
         container: aplayer.value,
         theme: theme,
-        loop: "loop",
+        loop: 'loop',
         lrcType: 3,
         fixed: true,
         listFolded: true,
         audio: songs,
       })
-      aplayerInstance.on("ended", () => {
+      aplayerInstance.on('ended', () => {
         aplayerInstance.skipForward()
         aplayerInstance.play()
       })
@@ -52,7 +52,7 @@ onUnmounted(() => {
 
 <style lang="scss" scoped>
 .aplayer:deep(.aplayer-body) {
-  font-family: "HarmonyOS_Sans_SC_Medium" !important;
+  font-family: 'HarmonyOS_Sans_SC_Medium' !important;
   color: var(--themeColor) !important;
 }
 
@@ -92,6 +92,6 @@ onUnmounted(() => {
 .aplayer:deep(.aplayer-lrc-contents) p {
   color: var(--themeColor);
   font-size: 14px;
-  font-family: "HarmonyOS_Sans_SC_Medium" !important;
+  font-family: 'HarmonyOS_Sans_SC_Medium' !important;
 }
 </style>

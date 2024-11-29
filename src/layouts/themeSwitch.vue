@@ -1,13 +1,13 @@
 <script lang="ts" setup>
-import { useAdminSettingStore } from "@/stores/admin/setting"
+import { useAdminSettingStore } from '@/stores/admin/setting'
 const AdminSettingStore = useAdminSettingStore()
-const html: HTMLHtmlElement = document.querySelector("html")
+const html: HTMLHtmlElement = document.querySelector('html')
 
 function changeTheme() {
-  if (html.className == "light") {
-    AdminSettingStore.setTheme("dark")
+  if (html.className == 'light') {
+    AdminSettingStore.setTheme('dark')
   } else {
-    AdminSettingStore.setTheme("light")
+    AdminSettingStore.setTheme('light')
   }
 }
 </script>
@@ -74,7 +74,7 @@ input {
 }
 
 html.dark .toggle-wrapper:before {
-  content: "";
+  content: '';
   position: absolute;
   left: 0;
   top: 0;
@@ -152,7 +152,7 @@ input#switch:checked + *:before {
 }
 
 .branch:nth-child(1):before {
-  content: "";
+  content: '';
   position: absolute;
   width: 10px;
   height: 44px;
@@ -174,7 +174,7 @@ input#switch:checked + *:before {
 }
 
 .branch:nth-child(2):after {
-  content: "";
+  content: '';
   position: absolute;
   width: 10px;
   height: 56px;
@@ -199,7 +199,7 @@ input#switch:checked + *:before {
 }
 
 .tree-left .tree:before {
-  content: "";
+  content: '';
   position: absolute;
   left: -50px;
   top: -50px;
@@ -262,7 +262,7 @@ input#switch:checked + *:before {
 }
 
 .tree-front .trunk:before {
-  content: "";
+  content: '';
   position: absolute;
   width: 12px;
   height: 30px;
@@ -275,7 +275,7 @@ input#switch:checked + *:before {
 }
 
 .tree-front .trunk:after {
-  content: "";
+  content: '';
   position: absolute;
   top: 23px;
   left: -4px;
@@ -326,7 +326,7 @@ html.dark .stars {
 }
 
 .big-star .vertical:before {
-  content: "";
+  content: '';
   position: absolute;
   top: -12px;
   width: 0;
@@ -337,7 +337,7 @@ html.dark .stars {
 }
 
 .big-star .vertical:after {
-  content: "";
+  content: '';
   position: absolute;
   top: 12px;
   border-right: 6px solid transparent;
@@ -353,7 +353,7 @@ html.dark .stars {
 }
 
 .big-star .horizontal:before {
-  content: "";
+  content: '';
   position: absolute;
   top: -12px;
   width: 0;
@@ -364,7 +364,7 @@ html.dark .stars {
 }
 
 .big-star .horizontal:after {
-  content: "";
+  content: '';
   position: absolute;
   top: 12px;
   border-right: 6px solid transparent;
@@ -380,7 +380,7 @@ html.dark .stars {
 }
 
 .small-star .vertical:before {
-  content: "";
+  content: '';
   position: absolute;
   top: -8px;
   width: 0;
@@ -391,7 +391,7 @@ html.dark .stars {
 }
 
 .small-star .vertical:after {
-  content: "";
+  content: '';
   position: absolute;
   top: 8px;
   border-right: 4px solid transparent;
@@ -407,7 +407,7 @@ html.dark .stars {
 }
 
 .small-star .horizontal:before {
-  content: "";
+  content: '';
   position: absolute;
   top: -8px;
   width: 0;
@@ -418,7 +418,7 @@ html.dark .stars {
 }
 
 .small-star .horizontal:after {
-  content: "";
+  content: '';
   position: absolute;
   top: 8px;
   border-right: 4px solid transparent;

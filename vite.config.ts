@@ -1,14 +1,14 @@
-import vue from "@vitejs/plugin-vue"
-import DefineOptions from "unplugin-vue-define-options/vite"
-import { defineConfig, loadEnv, type ConfigEnv } from "vite"
-import { resolve } from "path"
+import vue from '@vitejs/plugin-vue'
+import DefineOptions from 'unplugin-vue-define-options/vite'
+import { defineConfig, loadEnv, type ConfigEnv } from 'vite'
+import { resolve } from 'path'
 
 export default defineConfig(({ command, mode }: ConfigEnv) => {
   const root = process.cwd()
   const { VITE_APP_BASE_API, VITE_APP_PROXY_API } = loadEnv(mode, root)
 
   return {
-    base: "/admin-template/", //production Mode
+    base: '/admin-template/', //production Mode
     // base: "/", //development Mode
     define: {
       _VUE_OPTIONS_API_: JSON.stringify(false),
@@ -59,17 +59,17 @@ export default defineConfig(({ command, mode }: ConfigEnv) => {
       },
     },
     resolve: {
-      extensions: [".js", ".ts", ".tsx", ".jsx"],
+      extensions: ['.js', '.ts', '.tsx', '.jsx'],
       alias: [
         //配置路径别名
-        { find: "@", replacement: resolve(__dirname, "src") },
-        { find: "@type", replacement: resolve(__dirname, "src/types") },
-        { find: "@cop", replacement: resolve(__dirname, "src/components") },
-        { find: "@pages", replacement: resolve(__dirname, "src/pages") },
-        { find: "@icons", replacement: resolve(__dirname, "src/Icons") },
-        { find: "@utilCop", replacement: resolve(__dirname, "src/utilComponents") },
-        { find: "@api", replacement: resolve(__dirname, "src/api") },
-        { find: "@mock", replacement: resolve(__dirname, "src/mock") },
+        { find: '@', replacement: resolve(__dirname, 'src') },
+        { find: '@type', replacement: resolve(__dirname, 'src/types') },
+        { find: '@cop', replacement: resolve(__dirname, 'src/components') },
+        { find: '@pages', replacement: resolve(__dirname, 'src/pages') },
+        { find: '@icons', replacement: resolve(__dirname, 'src/Icons') },
+        { find: '@utilCop', replacement: resolve(__dirname, 'src/utilComponents') },
+        { find: '@api', replacement: resolve(__dirname, 'src/api') },
+        { find: '@mock', replacement: resolve(__dirname, 'src/mock') },
       ],
     },
   }

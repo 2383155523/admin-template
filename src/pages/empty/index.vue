@@ -1,22 +1,22 @@
 <script lang="ts" setup>
-import { onUnmounted, onActivated, onBeforeMount, onBeforeUnmount, onMounted } from "vue"
+import { onUnmounted, onActivated, onBeforeMount, onBeforeUnmount, onMounted } from 'vue'
 
-console.log("setup")
+console.log('setup')
 
 onBeforeMount(() => {
-  console.log("beforeMount")
+  console.log('beforeMount')
 })
 onMounted(() => {
-  console.log("mounted")
+  console.log('mounted')
 })
 onActivated(() => {
-  console.log("activated")
+  console.log('activated')
 })
 onBeforeUnmount(() => {
-  console.log("beforeUnmount")
+  console.log('beforeUnmount')
 })
 onUnmounted(() => {
-  console.log("unmounted")
+  console.log('unmounted')
 })
 </script>
 

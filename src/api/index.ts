@@ -1,4 +1,4 @@
-import req from "@/http"
+import req from '@/http'
 export interface LoginDto {
   qq: string
   password: string
@@ -6,8 +6,8 @@ export interface LoginDto {
 
 export const login = async (data: LoginDto) => {
   const { res, err, isSuccess } = await req<string>({
-    method: "post",
-    url: "/login",
+    method: 'post',
+    url: '/login',
     data,
   })
   return isSuccess ? res : err
@@ -20,8 +20,8 @@ export interface Category {
 
 export const getAllCategroy = async () => {
   const { res, err, isSuccess } = await req<Array<Category>>({
-    method: "get",
-    url: "/category/list",
+    method: 'get',
+    url: '/category/list',
   })
   return isSuccess ? res : err
 }
@@ -38,11 +38,11 @@ export const upload = async (data: FormData, config) => {
     size: number
     url: string
   }>({
-    method: "post",
-    url: "/upload",
+    method: 'post',
+    url: '/upload',
     data,
     headers: {
-      "Content-Type": "multipart/form-data",
+      'Content-Type': 'multipart/form-data',
     },
     ...config,
   })

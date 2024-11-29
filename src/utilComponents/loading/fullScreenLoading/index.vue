@@ -117,8 +117,8 @@
   </transition>
 </template>
 <script lang="ts" setup>
-import { ref, onMounted } from "vue"
-import { useAdminSettingStore } from "@/stores/admin/setting"
+import { ref, onMounted } from 'vue'
+import { useAdminSettingStore } from '@/stores/admin/setting'
 const AdminSettingStore = useAdminSettingStore()
 const isShow = ref<boolean>(false)
 const show = (closeTiming = 0) => {

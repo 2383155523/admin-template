@@ -64,8 +64,8 @@
   </transition>
 </template>
 <script lang="ts" setup>
-import { defineProps, toRefs, withDefaults } from "vue"
-import { useAdminSettingStore } from "@/stores/admin/setting"
+import { defineProps, toRefs, withDefaults } from 'vue'
+import { useAdminSettingStore } from '@/stores/admin/setting'
 const AdminSettingStore = useAdminSettingStore()
 const props = withDefaults(
   defineProps<{
@@ -75,15 +75,15 @@ const props = withDefaults(
   }>(),
   {
     isShow: false,
-    text: "快马加鞭中...",
+    text: '快马加鞭中...',
     auto: false,
   }
 )
 const { isShow, text, auto } = toRefs(props)
 </script>
 <style lang="scss" scoped>
-@import url("./theme/dark.scss");
-@import url("./theme/light.scss");
+@import url('./theme/dark.scss');
+@import url('./theme/light.scss');
 .loading {
   width: 100%;
   height: 100%;

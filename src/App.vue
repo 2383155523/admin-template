@@ -9,17 +9,17 @@ import {
   NLoadingBarProvider,
   zhCN,
   dateZhCN,
-} from "naive-ui"
-import { onMounted } from "vue"
-import fullScreenLoading from "@utilCop/loading/fullScreenLoading/index.vue"
-import { useAdminSettingStore } from "@/stores/admin/setting"
-import { getStorage } from "@/util/cache"
+} from 'naive-ui'
+import { onMounted } from 'vue'
+import fullScreenLoading from '@utilCop/loading/fullScreenLoading/index.vue'
+import { useAdminSettingStore } from '@/stores/admin/setting'
+import { getStorage } from '@/util/cache'
 
 const AdminSettingStore = useAdminSettingStore()
 
 const initThemeColor = () => {
   const themeColor =
-    getStorage("themeColor") == null ? AdminSettingStore.themeColor : getStorage("themeColor")
+    getStorage('themeColor') == null ? AdminSettingStore.themeColor : getStorage('themeColor')
   AdminSettingStore.setThemeColor(themeColor)
 }
 onMounted(() => {
@@ -59,7 +59,7 @@ onMounted(() => {
 </template>
 
 <style lang="scss">
-@import url("@/styles/reset.scss");
+@import url('@/styles/reset.scss');
 #nprogress .bar {
   background: var(--themeColor) !important; //自定义颜色
 }

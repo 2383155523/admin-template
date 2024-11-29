@@ -1,4 +1,4 @@
-import type { DirectiveBinding } from "vue"
+import type { DirectiveBinding } from 'vue'
 
 /***
  * @Name v-drag
@@ -22,13 +22,13 @@ import type { DirectiveBinding } from "vue"
 
 export default {
   created(el: HTMLElement, binding: DirectiveBinding) {
-    if (typeof binding.value !== "boolean") {
+    if (typeof binding.value !== 'boolean') {
       console.error(`v-drag value type must equal Boolean`)
       return
     }
     const enableLog = false // Log Mode 开启日志
     const isOutOfBound = binding.value === true //是否允许越界
-    const trigge: HTMLDivElement = el.querySelector("#trigge")
+    const trigge: HTMLDivElement = el.querySelector('#trigge')
     if (!trigge) {
       console.error(
         `v-drag Dom must has trigge element and element should has id the value is trigge`
@@ -38,7 +38,7 @@ export default {
 
     trigge.style.cssText = `cursor: move;`
 
-    trigge.addEventListener("mousedown", () => {
+    trigge.addEventListener('mousedown', () => {
       const dragDomOffsetParent = el.offsetParent as HTMLElement
       document.onmousemove = function (e: MouseEvent) {
         let left = e.pageX
@@ -52,7 +52,7 @@ export default {
           ) {
             //右边越界
             left = dragDomOffsetParent.clientWidth - el.offsetWidth
-            enableLog && console.log("右边越界")
+            enableLog && console.log('右边越界')
           } else if (
             left <=
             trigge.offsetWidth / 2 +
@@ -61,9 +61,9 @@ export default {
           ) {
             //左边越界
             left = 0
-            enableLog && console.log("左边越界")
+            enableLog && console.log('左边越界')
           } else {
-            enableLog && console.log("left正常")
+            enableLog && console.log('left正常')
             left = left - trigge.offsetLeft - trigge.offsetWidth / 2
           }
 
@@ -74,13 +74,13 @@ export default {
           ) {
             //下面越界
             top = dragDomOffsetParent.clientHeight - el.offsetHeight
-            enableLog && console.log("下面越界")
+            enableLog && console.log('下面越界')
           } else if (top <= trigge.offsetTop + trigge.offsetHeight / 2) {
             //上面越界
             top = 0
-            enableLog && console.log("上面越界")
+            enableLog && console.log('上面越界')
           } else {
-            enableLog && console.log("top正常")
+            enableLog && console.log('top正常')
             top = top - trigge.offsetTop - trigge.offsetHeight / 2
           }
         } else {

@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-console.log("Page2--->Child加载。。。")
+console.log('Page2--->Child加载。。。')
 </script>
 
 <style lang="scss" scoped>

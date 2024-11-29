@@ -1,21 +1,21 @@
-import { defineAsyncComponent } from "vue"
+import { defineAsyncComponent } from 'vue'
 
-import browser from "./admin/browser.vue"
-import closeAll from "./admin/closeAll.vue"
-import reload from "./admin/reload.vue"
-import dropdown from "./admin/dropdown.vue"
-import close from "./admin/close.vue"
-import sun from "./admin/sun.vue"
-import moon from "./admin/moon.vue"
-import lock from "./admin/lock.vue"
-import fullscreenIn from "./admin/fullscreenIn.vue"
-import fullscreenOut from "./admin/fullscreenOut.vue"
-import setting from "./admin/setting.vue"
-import home from "./admin/home.vue"
-import menuFold from "./admin/menuFold.vue"
-import menuUnFold from "./admin/menuUnFold.vue"
-import tag from "./admin/tag.vue"
-import logout from "./admin/logout.vue"
+import browser from './admin/browser.vue'
+import closeAll from './admin/closeAll.vue'
+import reload from './admin/reload.vue'
+import dropdown from './admin/dropdown.vue'
+import close from './admin/close.vue'
+import sun from './admin/sun.vue'
+import moon from './admin/moon.vue'
+import lock from './admin/lock.vue'
+import fullscreenIn from './admin/fullscreenIn.vue'
+import fullscreenOut from './admin/fullscreenOut.vue'
+import setting from './admin/setting.vue'
+import home from './admin/home.vue'
+import menuFold from './admin/menuFold.vue'
+import menuUnFold from './admin/menuUnFold.vue'
+import tag from './admin/tag.vue'
+import logout from './admin/logout.vue'
 
 // ------------------------------------ Admin Icons-----------------------------------
 //不要删除这里的 这是本项目默认依赖的图标

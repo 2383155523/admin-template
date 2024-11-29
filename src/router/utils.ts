@@ -1,10 +1,10 @@
-import MenuRoutes from "./meun"
-import { RouterLink } from "vue-router"
-import { h } from "vue"
+import MenuRoutes from './meun'
+import { RouterLink } from 'vue-router'
+import { h } from 'vue'
 
-import type { RouteRecordRaw, RouteMeta } from "vue-router"
-import type { route } from "@type/route"
-import type { MenuOption } from "naive-ui"
+import type { RouteRecordRaw, RouteMeta } from 'vue-router'
+import type { route } from '@type/route'
+import type { MenuOption } from 'naive-ui'
 
 function formatRouteConfigToVueRouterConfig(): Array<RouteRecordRaw> {
   const VueRouterConfig: Array<RouteRecordRaw> = []

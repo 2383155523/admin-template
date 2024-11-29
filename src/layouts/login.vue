@@ -50,11 +50,11 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, h } from "vue"
-import { useRouter } from "vue-router"
-import { useNotification, NAvatar, NButton, useMessage } from "naive-ui"
-import { adminInfo } from "@/config/var"
-import { useAdminStore } from "@/stores/admin/index"
+import { ref, h } from 'vue'
+import { useRouter } from 'vue-router'
+import { useNotification, NAvatar, NButton, useMessage } from 'naive-ui'
+import { adminInfo } from '@/config/var'
+import { useAdminStore } from '@/stores/admin/index'
 
 const message = useMessage()
 const notification = useNotification()
@@ -62,33 +62,34 @@ const AdminStore = useAdminStore()
 const router = useRouter()
 const userNameIsFocus = ref<boolean>(false)
 const passWordIsFocus = ref<boolean>(false)
-const userName = ref<string>("") //用户名
-const passWord = ref<string>("") //密码
+const userName = ref<string>('') //用户名
+const passWord = ref<string>('') //密码
 const userNameEl = ref<any>(null)
 const userNamePlaceholderEl = ref<any>(null)
 const passWordEl = ref<any>(null)
 const passWordPlaceholderEl = ref<any>(null)
 
 const getAdminInfo = async () => {
+  // eslint-disable-next-line no-constant-condition
   if (true) {
     //登录成功
-    passWord.value = ""
-    userName.value = ""
-    AdminStore.setToken("123456iamtoken") //登录成功设置token
+    passWord.value = ''
+    userName.value = ''
+    AdminStore.setToken('123456iamtoken') //登录成功设置token
     const data = adminInfo
     AdminStore.setAdminInfo(data) //全局缓存管理员信息
     const timer1: any = setTimeout(() => {
-      message.success("登录成功,正在跳转至首页......")
+      message.success('登录成功,正在跳转至首页......')
       window.$closeLoading() //关闭Loading动画
-      router.push({ path: "/" })
+      router.push({ path: '/' })
       let markAsRead = false
       const n = notification.create({
-        title: "欢迎首次进入",
+        title: '欢迎首次进入',
         content: `尊敬的超级管理员:${data.name},小蝣对您的首次到来表示热烈欢迎！`,
         meta: new Date().toLocaleString(),
         avatar: () =>
           h(NAvatar, {
-            size: "small",
+            size: 'small',
             round: false,
             src: data.avatar_url,
           }),
@@ -97,19 +98,19 @@ const getAdminInfo = async () => {
             NButton,
             {
               text: true,
-              type: "primary",
+              type: 'primary',
               onClick: () => {
                 markAsRead = true
                 n.destroy()
               },
             },
             {
-              default: () => "已读",
+              default: () => '已读',
             }
           ),
         onClose: () => {
           if (!markAsRead) {
-            message.warning("请设为已读")
+            message.warning('请设为已读')
             return false
           }
         },
@@ -130,7 +131,7 @@ const getAdminInfo = async () => {
 const submit = async () => {
   //提交登录
   if (!formVerify()) {
-    message.warning("请填写账号和密码")
+    message.warning('请填写账号和密码')
     return
   }
   window.$loading() //Loading动画开始加载
@@ -145,52 +146,52 @@ const submit = async () => {
 }
 const formVerify = () => {
   //表单验证
-  if (userName.value.trim() == "") {
-    userNameEl.value.style.borderColor = "#F44336"
-    userNamePlaceholderEl.value.classList.add("animate__shakeX")
+  if (userName.value.trim() == '') {
+    userNameEl.value.style.borderColor = '#F44336'
+    userNamePlaceholderEl.value.classList.add('animate__shakeX')
   } else {
-    userNameEl.value.style.borderColor = "#fff"
+    userNameEl.value.style.borderColor = '#fff'
   }
-  if (passWord.value.trim() == "") {
-    passWordEl.value.style.borderColor = "#F44336"
-    passWordPlaceholderEl.value.classList.add("animate__shakeX")
+  if (passWord.value.trim() == '') {
+    passWordEl.value.style.borderColor = '#F44336'
+    passWordPlaceholderEl.value.classList.add('animate__shakeX')
   } else {
-    passWordEl.value.style.borderColor = "#fff"
+    passWordEl.value.style.borderColor = '#fff'
   }
   setTimeout(() => {
-    userNamePlaceholderEl.value.classList.remove("animate__shakeX")
-    passWordPlaceholderEl.value.classList.remove("animate__shakeX")
+    userNamePlaceholderEl.value.classList.remove('animate__shakeX')
+    passWordPlaceholderEl.value.classList.remove('animate__shakeX')
   }, 1000)
-  return userName.value.trim() != "" && passWord.value.trim() != ""
+  return userName.value.trim() != '' && passWord.value.trim() != ''
 }
 
 const userNameBlur = () => {
   //失去焦点
-  if (userName.value.trim() == "") {
+  if (userName.value.trim() == '') {
     userNameIsFocus.value = false
   } else {
-    userNameEl.value.style.borderColor = "#fff"
+    userNameEl.value.style.borderColor = '#fff'
   }
 }
 const userNameFocus = () => {
   //聚焦
   userNameIsFocus.value = true
-  if (passWord.value.trim() == "") {
+  if (passWord.value.trim() == '') {
     passWordIsFocus.value = false
   }
 }
 const passWordBlur = () => {
   //失去焦点
-  if (passWord.value.trim() == "") {
+  if (passWord.value.trim() == '') {
     passWordIsFocus.value = false
   } else {
-    passWordEl.value.style.borderColor = "#fff"
+    passWordEl.value.style.borderColor = '#fff'
   }
 }
 const passWordFocus = () => {
   //聚焦
   passWordIsFocus.value = true
-  if (userName.value.trim() == "") {
+  if (userName.value.trim() == '') {
     userNameIsFocus.value = false
   }
 }
@@ -247,7 +248,7 @@ $border-radius: 6px;
   width: 100vw;
   height: 100vh;
   // background-image: linear-gradient(135deg, #81fbb8 10%, #28c76f 100%);
-  background: url("https://fuyouplus.oss-cn-beijing.aliyuncs.com/image/lightBg.jpg") no-repeat;
+  background: url('https://fuyouplus.oss-cn-beijing.aliyuncs.com/image/lightBg.jpg') no-repeat;
   background-size: cover;
   position: relative;
   .title {

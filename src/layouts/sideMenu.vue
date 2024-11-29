@@ -1,12 +1,12 @@
 <script lang="ts" setup>
-import { useNaiveMenuOptions } from "@/router/utils"
-import { NSpace, NLayout, NLayoutSider, NMenu } from "naive-ui"
-import { useAdminSettingStore } from "@/stores/admin/setting"
-import { useRoute } from "vue-router"
-import { watch } from "vue"
-import { ref } from "vue"
-import { IMenuFold, IMenuUnFold } from "@icons/index"
-import { isPC } from "@/hooks/resize"
+import { useNaiveMenuOptions } from '@/router/utils'
+import { NSpace, NLayout, NLayoutSider, NMenu } from 'naive-ui'
+import { useAdminSettingStore } from '@/stores/admin/setting'
+import { useRoute } from 'vue-router'
+import { watch } from 'vue'
+import { ref } from 'vue'
+import { IMenuFold, IMenuUnFold } from '@icons/index'
+import { isPC } from '@/hooks/resize'
 
 const route = useRoute()
 const AdminSettingStore = useAdminSettingStore()
@@ -23,7 +23,8 @@ watch(collapsed, newVal => {
 
 <template>
   <n-space vertical class="sideMenu">
-    <div :class="collapsed ? 'icon-collapsed' : 'icon'" class="collapsed-btn">
+    <!-- :class="collapsed ? 'icon-collapsed' : 'icon'"  -->
+    <div class="collapsed-btn">
       <i-menu-un-fold
         size="22"
         color="var(--iconColor)"
@@ -65,15 +66,18 @@ watch(collapsed, newVal => {
   background: var(--BlockBgColor);
   overflow-y: scroll;
 }
+
 .collapsed-btn {
   transition: all 0.3s var(--n-bezier);
 }
+
 .icon {
   text-align: right;
   box-sizing: border-box;
   padding-right: 10px;
   padding-top: 10px;
 }
+
 .icon-collapsed {
   text-align: center;
   padding-right: 0;

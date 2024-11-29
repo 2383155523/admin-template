@@ -1,14 +1,14 @@
-import bus from "@/eventBus/admin"
-import { defineStore } from "pinia"
+import bus from '@/eventBus/admin'
+import { defineStore } from 'pinia'
 import {
   defaultThemeColor,
   defaultTheme,
   musicDefaulMode,
   menuDefaultIsToRight,
   defaultPageAnimateMode,
-} from "@/config/var"
-import { setStorage } from "@/util/cache"
-import type { Theme, PageAnimateMode } from "@/config/var"
+} from '@/config/var'
+import { setStorage } from '@/util/cache'
+import type { Theme, PageAnimateMode } from '@/config/var'
 
 interface State {
   pageAnimateMode: PageAnimateMode
@@ -20,9 +20,9 @@ interface State {
   grayMode: boolean
 }
 
-const html: HTMLHtmlElement = document.querySelector("html")
+const html: HTMLHtmlElement = document.querySelector('html')
 
-export const useAdminSettingStore = defineStore("AdminSetting", {
+export const useAdminSettingStore = defineStore('AdminSetting', {
   state: (): State => ({
     themeColor: defaultThemeColor,
     theme: defaultTheme,
@@ -55,20 +55,20 @@ export const useAdminSettingStore = defineStore("AdminSetting", {
     setThemeColor(val: string): void {
       //设置主题色
       this.themeColor = val
-      document.documentElement.style.setProperty("--themeColor", val)
-      setStorage("themeColor", val)
+      document.documentElement.style.setProperty('--themeColor', val)
+      setStorage('themeColor', val)
     },
     setTheme(val: Theme): void {
       //设置主题
       this.theme = val
       bus.state.theme = val
-      if (val == "light") {
-        html.classList.remove("dark")
+      if (val == 'light') {
+        html.classList.remove('dark')
       } else {
-        html.classList.remove("light")
+        html.classList.remove('light')
       }
       html.classList.add(val)
-      setStorage("theme", val)
+      setStorage('theme', val)
     },
   },
 })

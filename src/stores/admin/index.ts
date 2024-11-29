@@ -1,17 +1,17 @@
-import { defineStore } from "pinia"
-import { adminInfo, tokenPrefix } from "@/config/var"
-import { setStorage, removeStorage } from "@/util/cache"
-import type { Admin_Info } from "@/config/var"
+import { defineStore } from 'pinia'
+import { adminInfo, tokenPrefix } from '@/config/var'
+import { setStorage, removeStorage } from '@/util/cache'
+import type { Admin_Info } from '@/config/var'
 
 interface State {
   adminInfo: Admin_Info
   token: string
 }
 
-export const useAdminStore = defineStore("Admin", {
+export const useAdminStore = defineStore('Admin', {
   state: (): State => ({
     adminInfo,
-    token: "",
+    token: '',
   }),
   actions: {
     setAdminInfo(val: Admin_Info): void {
@@ -22,9 +22,9 @@ export const useAdminStore = defineStore("Admin", {
       //设置Token
       this.token = val
       if (val) {
-        setStorage("token", tokenPrefix + val)
+        setStorage('token', tokenPrefix + val)
       } else {
-        removeStorage("token")
+        removeStorage('token')
       }
     },
   },

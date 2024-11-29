@@ -10,9 +10,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue"
+import { ref } from 'vue'
 
-const content = ref<string>("")
+const content = ref<string>('')
 </script>
 
 <style lang="scss" scoped>

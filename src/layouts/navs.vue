@@ -52,14 +52,14 @@
 </template>
 
 <script lang="ts" setup>
-import { useRouter, useRoute } from "vue-router"
-import { useAdminSettingStore } from "@/stores/admin/setting"
-import { useRouteStackStore } from "@/stores/admin/routeStack"
-import { h, ref, computed } from "vue"
-import { IClose, IDropdown, IReload, ICloseAll } from "@icons/index"
-import { NDropdown, useMessage, useLoadingBar } from "naive-ui"
-import { reload } from "@/hooks/reload"
-import draggable from "vuedraggable"
+import { useRouter, useRoute } from 'vue-router'
+import { useAdminSettingStore } from '@/stores/admin/setting'
+import { useRouteStackStore } from '@/stores/admin/routeStack'
+import { h, ref, computed } from 'vue'
+import { IClose, IDropdown, IReload, ICloseAll } from '@icons/index'
+import { NDropdown, useMessage, useLoadingBar } from 'naive-ui'
+import { reload } from '@/hooks/reload'
+import draggable from 'vuedraggable'
 const router = useRouter()
 const route = useRoute()
 const AdminSettingStore = useAdminSettingStore()
@@ -79,9 +79,9 @@ const routeStack = computed({
 const dragOptions = computed(() => {
   return {
     animation: 300,
-    group: "description",
+    group: 'description',
     disabled: false,
-    ghostClass: "ghost",
+    ghostClass: 'ghost',
   }
 })
 
@@ -93,23 +93,23 @@ interface routerItem {
 
 const settingOptions = [
   {
-    label: () => h("div", { onClick: refreshCurrent }, "刷新当前"),
-    key: "刷新当前",
+    label: () => h('div', { onClick: refreshCurrent }, '刷新当前'),
+    key: '刷新当前',
     icon: () => h(IReload),
   },
   {
-    label: () => h("div", { onClick: closeCurrent }, "关闭当前"),
-    key: "关闭当前",
+    label: () => h('div', { onClick: closeCurrent }, '关闭当前'),
+    key: '关闭当前',
     icon: () => h(IClose),
   },
   {
-    label: () => h("div", { onClick: closeOther }, "关闭其他"),
-    key: "关闭其他",
+    label: () => h('div', { onClick: closeOther }, '关闭其他'),
+    key: '关闭其他',
     icon: () => h(IClose),
   },
   {
-    label: () => h("div", { onClick: closeAll }, "关闭全部"),
-    key: "关闭全部",
+    label: () => h('div', { onClick: closeAll }, '关闭全部'),
+    key: '关闭全部',
     icon: () => h(ICloseAll),
   },
 ]
@@ -121,8 +121,8 @@ const mouseDownHandle = (e: MouseEvent, index: number) => {
 const currentCloseRouteIndexs = ref<Array<number>>([])
 
 const closeRouter = (index: number) => {
-  if (routeStack.value[index].title == "主控台") {
-    message.warning("主控台无法关闭")
+  if (routeStack.value[index].title == '主控台') {
+    message.warning('主控台无法关闭')
     return
   }
   const originRouterPath: string = RouteStackStore.routeStack[index].path
@@ -180,7 +180,7 @@ const closeOther = () => {
   const currentCloseRouteIndexsTmp = []
   const index = RouteStackStore.routeStack.findIndex((item: routerItem) => item.path == route.path)
   const filterResult = RouteStackStore.routeStack.filter((item: routerItem, i: number) => {
-    if (index == i || item.title == "主控台") {
+    if (index == i || item.title == '主控台') {
       return true
     } else {
       currentCloseRouteIndexsTmp.push(i)
@@ -199,7 +199,7 @@ const closeAll = () => {
   //关闭所有
   const currentCloseRouteIndexsTmp = []
   const filterResult = RouteStackStore.routeStack.filter((item: routerItem, index) => {
-    if (item.title == "主控台") {
+    if (item.title == '主控台') {
       return true
     } else {
       currentCloseRouteIndexsTmp.push(index)
@@ -210,7 +210,7 @@ const closeAll = () => {
   const timer = setTimeout(() => {
     RouteStackStore.setRouterStack(filterResult)
     currentCloseRouteIndexs.value = []
-    router.push({ path: "/" })
+    router.push({ path: '/' })
     clearTimeout(timer)
   }, 400)
 }

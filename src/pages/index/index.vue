@@ -6,7 +6,7 @@
 </template>
 
 <script setup lang="ts">
-console.log("首页加载。。。")
+console.log('首页加载。。。')
 </script>
 <style lang="scss" scoped>
 .index {

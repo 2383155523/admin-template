@@ -10,10 +10,10 @@
 </template>
 
 <script setup lang="ts">
-import { NButton, NModal } from "naive-ui"
-import { ref } from "vue"
+import { NButton, NModal } from 'naive-ui'
+import { ref } from 'vue'
 const showModal = ref<boolean>(false)
-console.log("Page2加载。。。")
+console.log('Page2加载。。。')
 </script>
 
 <style lang="scss" scoped>

@@ -1,4 +1,4 @@
-import { projectStoragePrefix } from "@/config/var"
+import { projectStoragePrefix } from '@/config/var'
 // --------------------------设置缓存-------------------------
 export const setStorage = (key: string, value: any): void => {
   localStorage.setItem(projectStoragePrefix + key, value)

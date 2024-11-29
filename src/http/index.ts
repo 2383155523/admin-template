@@ -1,8 +1,8 @@
-import axios from "axios"
-import { devApiBaseUrl, proApiBaseUrl, httpTimeOut } from "@/config/var"
+import axios from 'axios'
+import { devApiBaseUrl, proApiBaseUrl, httpTimeOut } from '@/config/var'
 
-import type { AxiosRequestConfig, AxiosInstance, AxiosResponse } from "axios"
-import type { ResponseBase } from "@/api/ResponseBase"
+import type { AxiosRequestConfig, AxiosInstance, AxiosResponse } from 'axios'
+import type { ResponseBase } from '@/api/ResponseBase'
 
 const instance: AxiosInstance = axios.create({
   baseURL: import.meta.env.VITE_APP_BASE_API,

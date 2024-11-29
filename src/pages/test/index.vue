@@ -10,20 +10,20 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from "vue"
-import { useRouter } from "vue-router"
+import { ref, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 
 defineOptions({
-  name: "test",
+  name: 'test',
 })
 
-const content = ref<string>("")
+const content = ref<string>('')
 const router = useRouter()
 function goRedirect() {
-  router.push("/test2/index")
+  router.push('/test2/index')
 }
 onMounted(() => {
-  console.log("testMounted")
+  console.log('testMounted')
 })
 </script>
 

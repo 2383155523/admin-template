@@ -1,4 +1,4 @@
-import { ref, nextTick } from "vue"
+import { ref, nextTick } from 'vue'
 
 export const routeIsAlive = ref<boolean>(true)
 

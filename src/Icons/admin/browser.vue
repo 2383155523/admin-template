@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { NIcon } from "naive-ui"
+import { NIcon } from 'naive-ui'
 </script>
 
 <template>
