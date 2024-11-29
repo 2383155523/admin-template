@@ -4,7 +4,7 @@ import { h } from 'vue'
 
 import type { RouteRecordRaw, RouteMeta } from 'vue-router'
 import type { route } from '@type/route'
-import type { MenuOption } from 'naive-ui'
+import { NEllipsis, type MenuOption } from 'naive-ui'
 
 function formatRouteConfigToVueRouterConfig(): Array<RouteRecordRaw> {
   const VueRouterConfig: Array<RouteRecordRaw> = []
@@ -63,7 +63,7 @@ function formatRouteConfigToNaiveMenuOptions(): Array<MenuOption> {
                 },
               },
               {
-                default: () => child.meta.title,
+                default: () => h(NEllipsis, null, { default: () => child.meta.title }),
               }
             ),
           key: child.fullPath,
@@ -85,7 +85,7 @@ function formatRouteConfigToNaiveMenuOptions(): Array<MenuOption> {
                     },
                   },
                   {
-                    default: () => route.meta.title,
+                    default: () => h(NEllipsis, null, { default: () => route.meta.title }),
                   }
                 ),
           key: route.fullPath,

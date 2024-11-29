@@ -23,6 +23,11 @@ const AdminSettingStore = useAdminSettingStore()
   width: 100% !important;
   height: 100% !important;
   border-radius: var(--radius);
+  background: var(--BlockBgColor);
+  color: var(--TextColor);
+  box-sizing: border-box;
+  padding: 10px;
+  transition: all 0.3s var(--n-bezier);
 }
 
 /* fade-transform */

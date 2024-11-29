@@ -42,6 +42,7 @@ html.light {
   --tree: rgba(76, 80, 139, 1);
   --sun: linear-gradient(24deg, rgba(255, 219, 156, 1) 0%, rgba(254, 195, 87, 1) 53%);
   --day-night: rgba(242, 198, 160, 0.6);
+  --scrollbar-thumb-color:rgba(255, 255, 255, 0.6);
 }
 html.dark {
   --themeColor: #0ea9e3;
@@ -67,4 +68,5 @@ html.dark {
   --tree: #78177b;
   --sun: linear-gradient(180deg, rgba(255, 219, 156, 1) 0%, rgba(254, 195, 87, 1) 53%);
   --day-night: #6c528cb3;
+  --scrollbar-thumb-color:rgba(0, 0, 0, 0.6);
 }

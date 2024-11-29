@@ -20,10 +20,10 @@ console.log('首页加载。。。')
   // @include center;
   overflow-y: scroll; //竖向滚动
   overflow-x: scroll; //横向滚动
-  // .br {
-  //   width: 2000px;
-  //   height: 2000px;
-  //   background-color: goldenrod;
-  // }
+  .br {
+    width: 2000px;
+    height: 2000px;
+    // background-color: goldenrod;
+  }
 }
 </style>

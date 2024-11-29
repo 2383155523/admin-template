@@ -12,7 +12,7 @@
         <div class="routerNav" v-if="isPC"><route-nav /></div>
         <div class="routerContent">
           <routerContent />
-          <partLoading :isShow="!routeIsAlive" auto text="Loading" />
+          <partLoading :isShow="!routeIsAlive" auto />
         </div>
       </div>
     </div>
@@ -177,6 +177,7 @@ onMounted(() => {
       height: 85vh;
       margin: 0 auto;
       position: relative;
+      border-radius: var(--radius);
     }
   }
 }

@@ -51,7 +51,6 @@ watch(collapsed, newVal => {
           :collapsed-width="70"
           :collapsed-icon-size="22"
           :options="menuOptions"
-          :accordion="true"
         />
       </n-layout-sider>
     </n-layout>
@@ -65,10 +64,14 @@ watch(collapsed, newVal => {
   position: relative;
   background: var(--BlockBgColor);
   overflow-y: scroll;
+  padding-top: 10px;
+  box-sizing: border-box;
 }
 
 .collapsed-btn {
   transition: all 0.3s var(--n-bezier);
+  text-align: right;
+  margin-right: 24px;
 }
 
 .icon {
