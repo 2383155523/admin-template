@@ -8,7 +8,7 @@ export default defineConfig(({ command, mode }: ConfigEnv) => {
   const { VITE_APP_BASE_API, VITE_APP_PROXY_API } = loadEnv(mode, root)
 
   return {
-    base: '/admin-template/', //production Mode
+    // base: '/admin-template/', //production Mode
     // base: "/", //development Mode
     define: {
       _VUE_OPTIONS_API_: JSON.stringify(false),
